@@ -1,25 +1,16 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import reactLogo from './assets/icons/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-
-//  get the top 100 most starred Github repositories
-//  display the list of repositories in a table
-//  each row should contain the repository name, description, number of stars, open issues count, and the owner name
-
-import { Octokit } from 'octokit'
-
-const octokit = new Octokit({ auth: import.meta.env.GITHUB_PERSONAL_ACCESS_TOKEN })
-const { data } = await octokit.request('GET /search/repositories', {
-  q: 'stars:>1000',
-  sort: 'stars',
-  order: 'desc',
-  page: 1,
-  per_page: 100,
-})
+import { useRepoSearch } from './data/useRepoSearch'
+import { useCommitSearch } from './data/useCommitSearch'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const repos = useRepoSearch()
+  const commits = useCommitSearch('freeCodeCamp/freeCodeCamp')
+  console.log({ commits })
 
   return (
     <>
@@ -32,7 +23,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <h3>First Result: { data?.items?.length ?? 0 }</h3>
+      <h3>First Result: { repos?.current?.length ?? 'none' }</h3>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
