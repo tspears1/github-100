@@ -2,8 +2,6 @@ import { useEffect, useRef } from 'react'
 import { Octokit } from 'octokit'
 import { useAuthToken } from '../hooks/useAuthToken'
 
-// https://api.github.com/search/commits?q=repo:freeCodeCamp/freeCodeCamp author-date:>2023-09-28&sort=author-date
-
 /**
  * @typedef {Object} CommitSearchParams
  * @property {number} [deadline] - The number of minutes to search commits before. Default: 1440 (24 hours).
@@ -11,6 +9,10 @@ import { useAuthToken } from '../hooks/useAuthToken'
  * @property {'asc' | 'desc'} [order] - The sort order if sort parameter is provided. One of asc or desc. Default: desc
  * @property {number} [per_page] - Results per page (max 100). Default: 30
  * @property {number} [page] - Page number of the results to fetch. Default: 1
+ */
+
+/**
+ * @typedef {Object} FilteredData
  */
 
 /**
