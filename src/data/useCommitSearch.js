@@ -12,14 +12,19 @@ import { useAuthToken } from '../hooks/useAuthToken'
  */
 
 /**
- * @typedef {Object} FilteredData
+ * @typedef {Object} CommitData
+ * @property {string} url - The url of the commit.
+ * @property {string} author - The login of the author of the commit.
+ * @property {string} date - The date of the commit.
+ * @property {string} message - The message of the commit.
+ * @property {string} sha - The sha of the commit.
  */
 
 /**
  * @function useCommitSearch
  * @param {string} repoFullName - The name of the repository to search in the format owner/repo-name.
  * @param {CommitSearchParams} options
- * @returns {FilteredData[]}
+ * @returns {CommitData[]}
  */
 const useCommitSearch = (repoFullName,{
     deadline = 1440,
@@ -29,21 +34,29 @@ const useCommitSearch = (repoFullName,{
     page= 1,
 } = {}) => {
 
-    // Data storage.
     const data = useRef(null)
     const token = useAuthToken()
 
     // Get the date string to search commits before based on the deadline.
-    /** @type {string} dealineDate */
-    let deadlineDate = new Date()
-    deadlineDate.setMinutes(deadlineDate.getMinutes() - deadline)
-    deadlineDate = deadlineDate.toISOString().split('T')[0]
+    const _timestamp = new Date()
+    _timestamp.setMinutes(_timestamp.getMinutes() - deadline)
+    const deadlineTimestamp = _timestamp.toISOString()
+
+    // Create the query string.
+    const query = `repo:${repoFullName} author-date:>${deadlineTimestamp}`
 
     const filterData = (unfilteredData) => {
-        console.log({ unfilteredData })
-        return null
+        const filtered = unfilteredData?.items.map((item) => {
+            return {
+                url: item.html_url,
+                author: item.author.login,
+                date: item.commit.author.date,
+                message: item.commit.message,
+                sha: item.sha,
+            }
+        })
+        return data.current = filtered
     }
-
 
     useEffect(() => {
         // Create a new instance of the Octokit REST API client.
@@ -51,7 +64,7 @@ const useCommitSearch = (repoFullName,{
         const fetchData = async () => {
             // Fetch the data from the GitHub API.
             await octokit.request('GET /search/commits', {
-                q: `repo:${repoFullName} author-date:>${deadlineDate}`,
+                q: query,
                 sort,
                 order,
                 per_page,
@@ -65,7 +78,9 @@ const useCommitSearch = (repoFullName,{
         }
         fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [query, sort, order, per_page, page])
+
+    return data
 }
 
 export { useCommitSearch }

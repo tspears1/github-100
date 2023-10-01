@@ -10,7 +10,7 @@ function App() {
 
   const repos = useRepoSearch()
   const commits = useCommitSearch('freeCodeCamp/freeCodeCamp')
-  console.log({ commits })
+  console.log('commits', commits.current)
 
   return (
     <>
