@@ -24,7 +24,8 @@ import { useAuthToken } from '../hooks/useAuthToken'
  */
 
 /**
- * @function useRepoSearch
+ * Get the top starred repositories from GitHub.
+ *
  * @param {RepositorySearchParams} options
  * @returns {FilteredData[]}
  */
@@ -40,7 +41,12 @@ const useRepoSearch = ({
     const data = useRef(null)
     const token = useAuthToken()
 
-    // Filter the data to only the fields we need.
+    /**
+     * Filter the data to only the fields we need.
+     *
+     * @param {Object} unfilteredData - The unfiltered data from the GitHub API.
+     * @return {FilteredData[]}
+     */
     const filterData = (unfilteredData) => {
         if (!unfilteredData) return
 
@@ -60,8 +66,13 @@ const useRepoSearch = ({
     }
 
     useEffect(() => {
-        // Fetch the data from the GitHub API. Then filter it and store it.
         const octokit = new Octokit({ auth: token })
+
+        /**
+         * Fetch the data from the GitHub API. Then filter it and store it.
+         *
+         * @return {void}
+         */
         const fetchData = async () => {
             await octokit.request('GET /search/repositories', {
                 q,

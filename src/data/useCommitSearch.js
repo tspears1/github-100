@@ -21,7 +21,8 @@ import { useAuthToken } from '../hooks/useAuthToken'
  */
 
 /**
- * @function useCommitSearch
+ * Get the most recent commits for a repository.
+ *
  * @param {string} repoFullName - The name of the repository to search in the format owner/repo-name.
  * @param {CommitSearchParams} options
  * @returns {CommitData[]}
@@ -45,6 +46,12 @@ const useCommitSearch = (repoFullName,{
     // Create the query string.
     const query = `repo:${repoFullName} author-date:>${deadlineTimestamp}`
 
+    /**
+     * Filter the data to only the fields we need.
+     *
+     * @param {Object} unfilteredData - The unfiltered data from the GitHub API.
+     * @return {CommitData[]}
+     */
     const filterData = (unfilteredData) => {
         const filtered = unfilteredData?.items.map((item) => {
             return {
@@ -59,10 +66,14 @@ const useCommitSearch = (repoFullName,{
     }
 
     useEffect(() => {
-        // Create a new instance of the Octokit REST API client.
         const octokit = new Octokit({ auth: token })
+
+        /**
+         *  Fetch the data from the GitHub API.
+         *
+         * @returns {void}
+         */
         const fetchData = async () => {
-            // Fetch the data from the GitHub API.
             await octokit.request('GET /search/commits', {
                 q: query,
                 sort,
@@ -70,7 +81,6 @@ const useCommitSearch = (repoFullName,{
                 per_page,
                 page,
             }).then((response) => {
-                // Filter the data to only the fields we need.
                 filterData(response.data)
             }).catch((error) => {
                 console.warn(error)
