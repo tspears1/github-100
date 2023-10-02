@@ -5,19 +5,18 @@
         gap: var(--size-fluid-1);
         grid-auto-columns: max-content;
         grid-auto-flow: column;
+        grid-template-columns: 3rem;
     }
 
-    &__item {
-        > * {
-            aspect-ratio: 1;
-            block-size: 100%;
-            display: grid;
-            place-items: center;
-        }
+    &__button {
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
 
-        > a {
+        &:is(a) {
             --_link-alpha: 0.5;
             color: hsl(var(--text-1-hsl) / var(--_link-alpha));
+            font-size: 1.5rem;
 
             @media (prefers-reduced-motion: no-preference) {
                 transition:
@@ -29,6 +28,10 @@
                 --_link-alpha: 1;
                 text-decoration: none;
             }
+        }
+
+        .icon {
+            max-inline-size: 1.5rem;
         }
     }
 }

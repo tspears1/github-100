@@ -40,7 +40,7 @@ const Card = ({ content }) => {
                 </div>
                 <div className="card__button button button--outline" title="View Repo Details">
                     <span className="sr-only">View Repo Details</span>
-                    <span className="material-symbols-rounded">add</span>
+                    <span className="card__button-icon material-symbols-rounded">add</span>
                 </div>
             </div>
         </article>

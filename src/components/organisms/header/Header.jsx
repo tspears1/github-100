@@ -15,7 +15,7 @@ const Header = () => {
                 </div>
                 <nav className='site-utility'>
                     <ul className='site-utility__list'>
-                        <li className='site-utility__item'>
+                        <li className='site-utility__item has--tooltip'>
                             <a
                                 href='https://github.com/tspears1/github-100'
                                 className='site-utility__button button button--outline'
@@ -25,9 +25,11 @@ const Header = () => {
                                 <span className='sr-only'>View the Code</span>
                                 <span className="icon material-symbols-rounded">data_object</span>
                             </a>
+                            <tool-tip tip-position="block-end">View the Code</tool-tip>
                         </li>
-                        <li className='site-utility__item'>
+                        <li className='site-utility__item has--tooltip'>
                             <ThemeToggle />
+                            <tool-tip tip-position="block-end">Toggle Theme</tool-tip>
                         </li>
                     </ul>
                 </nav>

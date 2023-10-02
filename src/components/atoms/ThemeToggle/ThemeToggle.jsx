@@ -71,7 +71,7 @@ const ThemeToggle = () => {
 
     return (
         <button
-            className='theme-toggle button button--outline'
+            className='site-utility__button theme-toggle button button--outline'
             id='theme-toggle'
             title='Toggles light & dark'
             aria-label={ theme.current ?? 'auto' }

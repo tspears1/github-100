@@ -11,6 +11,8 @@
         justify-content: space-between;
         padding-block: var(--size-fluid-2);
         padding-inline: var(--size-fluid-4);
+        position: relative;
+        z-index: var(--layer-1);
     }
 
     &__brand {

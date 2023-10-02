@@ -1,5 +1,10 @@
 @use '@styles/abstracts/mixins/buttons' as btn;
 
+//==========================================================================
+//==[ @component Card ]=====================================================
+//==========================================================================
+
+/* hover & focus state ----------------------------------------------------- */
 @mixin card-action-state {
     --card-box-shadow: var(--shadow-4);
     --card-header-pseudo-opacity: 1;
@@ -14,20 +19,40 @@
     }
 }
 
+/* .card ----------------------------------------------------- */
 .card {
+    --card-avatar-size: calc(var(--size-fluid-6) * 0.9);
     --card-background-color: var(--surface-2);
     --card-box-shadow: var(--shadow-3);
+    --card-font-size-author: 0.875rem;
+    --card-font-size-description: var(--size-fluid-1);
+    --card-font-size-eyebrow: var(--size-fluid-1);
+    --card-font-size-ranking: var(--font-size-fluid-2);
+    --card-font-size-title: calc(var(--font-size-fluid-1) * 1.3);
     --card-header-pseudo-opacity: 0;
-    --card-padding-block: var(--size-fluid-1);
-    --card-padding-inline: var(--size-fluid-1);
+    --card-icon-size: 1.5em;
+    --card-padding-block: var(--size-3);
+    --card-padding-inline: var(--size-3);
     --card-ranking-color: var(--surface-4);
     --card-ranking-opacity: 0.8;
     --card-scale: 1;
+
+    @supports (font-size: 1cqi) {
+        --card-avatar-size: 24cqi;
+        --card-font-size-author: 3.25cqi;
+        --card-font-size-description: 3.6cqi;
+        --card-font-size-eyebrow: 3.73cqi;
+        --card-font-size-ranking: 10cqi;
+        --card-font-size-title: 7.25cqi;
+        --card-icon-size: 6.75cqi;
+    }
 
     align-content: start;
     background: var(--card-background-color);
     border-radius: var(--radius-3);
     box-shadow: var(--card-box-shadow);
+    container-name: card;
+    container-type: inline-size;
     display: grid;
     gap: var(--card-padding-block);
     grid-template-rows: max-content 1fr max-content;
@@ -86,7 +111,7 @@
         border-end-end-radius: 0.5rem;
         display: grid;
         font-family: var(--font-mono);
-        font-size: var(--size-fluid-1);
+        font-size: var(--card-font-size-eyebrow);
         gap: 0.5em;
         grid-template-columns: max-content auto;
         inset: calc(var(--card-padding-block) * 0.75 * -1) auto auto calc(var(--card-padding-inline) * 0.75 * -1);
@@ -95,6 +120,12 @@
         padding-block: 0.75rem;
         padding-inline: 0.75rem;
         position: absolute;
+    }
+
+    &__eyebrow-icon {
+        &:is(.material-symbols-rounded) {
+            font-size: 1.5em !important;
+        }
     }
 
     &__eyebrow-text {
@@ -107,8 +138,8 @@
         background: var(--card-background-color);
         border-radius: var(--radius-round);
         border-end-end-radius: 0;
-        border: calc(var(--size-fluid-1) * 0.9) solid var(--card-background-color);
-        block-size: calc(var(--size-fluid-6) * 0.9);
+        border: calc(var(--card-avatar-size) * 0.12) solid var(--card-background-color);
+        block-size: var(--card-avatar-size);
         inset: auto calc(var(--card-padding-block) * -1) calc(var(--card-padding-inline) * -1) auto;
         place-self: end;
         position: absolute;
@@ -130,21 +161,23 @@
         --_title-spacing: calc(var(--card-padding-block) * 0.5);
         margin-block-end: var(--_title-spacing);
 
-        &::after {
-            content: '';
-            display: block;
-            block-size: 0.5rem;
-            border-radius: var(--radius-2);
-            background: hsl(var(--surface-3-hsl) / 0.15);
-            inline-size: 100%;
-            margin-block-start: var(--_title-spacing);
+        @container root (min-width: 32rem) {
+            &::after {
+                content: '';
+                display: block;
+                block-size: 0.5rem;
+                border-radius: var(--radius-2);
+                background: hsl(var(--surface-3-hsl) / 0.15);
+                inline-size: 100%;
+                margin-block-start: var(--_title-spacing);
+            }
         }
     }
 
     &__link {
         @include btn.button-reset();
         font-family: var(--font-sans);
-        font-size: calc(var(--font-size-fluid-1) * 1.3);
+        font-size: var(--card-font-size-title);
         font-weight: var(--font-weight-7);
         letter-spacing: var(--font-letterspacing-2);
         outline: none;
@@ -160,18 +193,31 @@
     &__author {
         color: hsl(var(--text-2-hsl) / 0.8);
         font-family: var(--font-mono);
-        font-size: 0.875rem;
+        font-size: var(--card-font-size-author);
         font-weight: var(--font-weight-3);
         letter-spacing: var(--font-letterspacing-4);
         line-height: 1;
         margin-block-end: calc(var(--card-padding-block) * 0.1);
     }
 
+    &__description {
+        display: none;
+        @container root (min-width: 32rem) {
+            display: block;
+            font-size: var(--card-font-size-description);
+        }
+    }
+
     &__button {
         aspect-ratio: var(--ratio-square);
-        block-size: 100%;
         display: grid;
         place-items: center;
+    }
+
+    &__button-icon {
+        &:is(.material-symbols-rounded) {
+            font-size: var(--card-icon-size) !important;
+        }
     }
 
     &__footer {
@@ -185,7 +231,7 @@
     &__ranking {
         color: var(--card-ranking-color);
         font-family: var(--font-pixel);
-        font-size: var(--font-size-fluid-2);
+        font-size: var(--card-font-size-ranking);
         opacity: var(--card-ranking-opacity);
         transition:
             color var(--duration-fast) var(--ease-out-3),
