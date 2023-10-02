@@ -1,16 +1,15 @@
 import { GithubIcon } from '@icons/Github'
 import ThemeToggle from '@components/atoms/theme-toggle/ThemeToggle'
-import './index.scss'
 
 const Header = () => {
 
     return (
         <header className='site-header'>
-            <div className='site-brand'>
-                <div className='site-logo'>
+            <div className='site-header__brand'>
+                <div className='site-header__logo'>
                     <GithubIcon />
                 </div>
-                <h1 className='site-title'>GitHub<span>100</span></h1>
+                <h1 className='site-header__title'>GitHub<span>100</span></h1>
             </div>
             <nav className='site-utility'>
                 <ul className='site-utility__list'>

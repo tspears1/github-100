@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import './index.scss'
 
 const ThemeToggle = () => {
     /** @type {string} */
@@ -67,6 +66,7 @@ const ThemeToggle = () => {
                 setPreference()
             })
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

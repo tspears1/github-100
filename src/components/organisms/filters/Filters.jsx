@@ -1,4 +1,3 @@
-import './index.scss'
 
 const Filters = () => {
     // Title search, sort { ranking asc, ranking desc, alpha asc, alpha desc }

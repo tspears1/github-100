@@ -1,4 +1,3 @@
-import './index.scss'
 
 const Card = ({ content }) => {
     const { name, description, owner, stars, avatar, rank } = content
@@ -10,6 +9,7 @@ const Card = ({ content }) => {
     const ranking = rank < 10 ? `00${ rank }` : rank < 100 ? `0${ rank }` : rank
 
     //Todo: lazyload transition, add framer motion animation, make header sticky, add hover state, skeletons.
+    //TODO: CONTAINER QUERIES.
     return (
         <article className="card">
             <div className="card__header">
