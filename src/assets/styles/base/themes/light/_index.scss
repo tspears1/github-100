@@ -1,22 +1,22 @@
 :where(html) {
-    --brand-light:               var(--purple-8);
-    --brand-light-hsl:           var(--purple-8-hsl);
+    --brand-light:               var(--orange-8);
+    --brand-light-hsl:           var(--orange-8-hsl);
 
-    --text-1-light:              var(--slate-950);
-    --text-1-light-hsl:          var(--slate-950-hsl);
-    --text-2-light:              var(--slate-800);
-    --text-2-light-hsl:          var(--slate-800-hsl);
+    --text-1-light:              var(--gray-9);
+    --text-1-light-hsl:          var(--gray-9-hsl);
+    --text-2-light:              var(--gray-8);
+    --text-2-light-hsl:          var(--gray-8-hsl);
 
-    --surface-1-light:           var(--slate-100);
-    --surface-1-light-hsl:       var(--slate-100-hsl);
-    --surface-2-light:           var(--slate-200);
-    --surface-2-light-hsl:       var(--slate-200-hsl);
-    --surface-3-light:           var(--slate-300);
-    --surface-3-light-hsl:       var(--slate-300-hsl);
-    --surface-4-light:           var(--slate-400);
-    --surface-4-light-hsl:       var(--slate-400-hsl);
+    --surface-1-light:           var(--gray-2);
+    --surface-1-light-hsl:       var(--gray-2-hsl);
+    --surface-2-light:           var(--gray-3);
+    --surface-2-light-hsl:       var(--gray-3-hsl);
+    --surface-3-light:           var(--gray-4);
+    --surface-3-light-hsl:       var(--gray-4-hsl);
+    --surface-4-light:           var(--gray-5);
+    --surface-4-light-hsl:       var(--gray-5-hsl);
 
-    --surface-shadow-light:      var(--slate-600-hsl);
+    --surface-shadow-light:      var(--gray-6-hsl);
     --shadow-strength-light:     10%;
 }
 

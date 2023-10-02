@@ -38,10 +38,10 @@ const Card = ({ content }) => {
                 <div className="card__ranking">
                     { ranking }
                 </div>
-                <button className="card__button button button--outline" title="View Repo Details">
+                <div className="card__button button button--outline" title="View Repo Details">
                     <span className="sr-only">View Repo Details</span>
                     <span className="material-symbols-rounded">add</span>
-                </button>
+                </div>
             </div>
         </article>
     )

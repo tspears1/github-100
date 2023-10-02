@@ -1,8 +1,20 @@
 @use '@styles/abstracts/mixins/buttons' as btn;
 
-.card {
-    $b: &;
+@mixin card-action-state {
+    --card-box-shadow: var(--shadow-4);
+    --card-header-pseudo-opacity: 1;
+    --card-ranking-color: var(--brand);
+    --card-ranking-opacity: 1;
+    --card-scale: 1.04;
 
+    .card__button {
+        --_button-highlight-color: hsl(var(--brand-hsl) / 0.8);
+        --_button-highlight-size: calc(var(--font-size-fluid-0) / 3);
+        --_button-border-color: var(--_button-highlight-color);
+    }
+}
+
+.card {
     --card-background-color: var(--surface-2);
     --card-box-shadow: var(--shadow-3);
     --card-header-pseudo-opacity: 0;
@@ -30,17 +42,20 @@
 
     @media (any-hover: hover) {
         &:hover {
-            --card-box-shadow: var(--shadow-4);
-            --card-header-pseudo-opacity: 1;
-            --card-ranking-color: var(--brand);
-            --card-ranking-opacity: 1;
-            --card-scale: 1.04;
+            @include card-action-state();
         }
     }
 
+    &:focus-within {
+        @include card-action-state();
+    }
+
     &__header {
+        --_header-gradient: linear-gradient(200deg, var(--surface-4), var(--surface-1));
+        --_header-pseudo-gradient: var(--gradient-1);
+
         aspect-ratio: var(--ratio-ultrawide);
-        background-image: var(--gradient-23);
+        background-image: var(--_header-gradient);
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100% 120%;
@@ -49,8 +64,13 @@
         inline-size: 100%;
         position: relative;
 
+        [color-scheme="dark"] & {
+            --_header-gradient: var(--gradient-23);
+            --_header-pseudo-gradient: var(--gradient-3);
+        }
+
         &::before {
-            background-image: var(--gradient-3);
+            background-image: var(--_header-pseudo-gradient);
             border-radius: inherit;
             content: '';
             inset: 0;
@@ -127,6 +147,7 @@
         font-size: calc(var(--font-size-fluid-1) * 1.3);
         font-weight: var(--font-weight-7);
         letter-spacing: var(--font-letterspacing-2);
+        outline: none;
         text-align: start;
 
         &::after {
