@@ -1,7 +1,6 @@
-import Header from "@components/organisms/header/Header"
-import Layout from "@components/organisms/layout/Layout"
-import Filters from "@components/organisms/filters/Filters"
-import CardGrid from "@components/organisms/card-grid/CardGrid"
+import Header from "@components/organisms/Header/Header"
+import Layout from "@components/organisms/Layout/Layout"
+import CardGrid from "@components/organisms/CardGrid/CardGrid"
 
 const App = () => {
 
@@ -9,7 +8,6 @@ const App = () => {
     <>
       <Layout>
         <Header />
-        <Filters />
         <CardGrid />
       </Layout>
     </>

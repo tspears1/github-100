@@ -4,9 +4,6 @@ import Card from '@components/molecules/card/Card'
 // Context ===============================
 import { useRepoData } from '@context/repo-data'
 
-// Styles ===============================
-import './index.scss'
-
 const CardGrid = () => {
     const data = useRepoData()
 

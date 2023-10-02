@@ -1,8 +1,10 @@
 @use 'sass:meta';
+// Import fonts from [Google](https://fonts.google.com/).
 @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;500;700&family=Koulen&family=Pixelify+Sans:wght@500&display=swap');
 
 @layer open-props, base, utils, components;
 
+// Import [open-props](https://open-props.style/) properties and normalize.
 @layer open-props {
     @import "open-props/style";
     @import "open-props/normalize";
@@ -22,9 +24,12 @@
     @layer atoms {
         @include meta.load-css('atoms');
     }
-}
 
-// Gradient option note:
-// background-size: 100% 100%;
-// background-position: 0px 0px,0px 0px,0px 0px,0px 0px,0px 0px;
-// background-image: radial-gradient(49% 81% at 45% 47%, #FF03C345 0%, #073AFF00 100%),radial-gradient(113% 91% at 17% -2%, #2856ACFF 1%, #FF000000 99%),radial-gradient(142% 91% at 83% 7%, #9F3DE9FF 1%, #FF000000 99%),radial-gradient(142% 91% at 31% 55%, #00FBFFFF 1%, #8900FF00 99%),radial-gradient(142% 91% at 75% 51%, #0006FFFF 0%, #FF00A3FF 100%);
+    @layer molecules {
+        @include meta.load-css('molecules');
+    }
+
+    @layer organisms {
+        @include meta.load-css('organisms');
+    }
+}

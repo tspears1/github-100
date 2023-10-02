@@ -1,10 +1,17 @@
 .site-header {
-    background: var(--surface-2);
-    display: flex;
-    gap: var(--size-fluid-4);
-    justify-content: space-between;
-    padding-block: var(--size-fluid-2);
-    padding-inline: var(--size-fluid-4);
+    inset-block-start: 0;
+    position: sticky;
+    z-index: var(--layer-4);
+
+    &__grid {
+        background: hsl(var(--surface-2-hsl) / 0.8);
+        backdrop-filter: blur(1.25rem);
+        display: flex;
+        gap: var(--size-fluid-4);
+        justify-content: space-between;
+        padding-block: var(--size-fluid-2);
+        padding-inline: var(--size-fluid-4);
+    }
 
     &__brand {
         align-items: center;

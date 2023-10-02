@@ -16,17 +16,17 @@
         }
 
         > a {
-            color: var(--text-1);
-            opacity: 0.6;
+            --_link-alpha: 0.5;
+            color: hsl(var(--text-1-hsl) / var(--_link-alpha));
 
             @media (prefers-reduced-motion: no-preference) {
                 transition:
                     box-shadow var(--duration-fast) var(--ease-out-2),
-                    opacity var(--duration-quick) var(--ease-out-2);
+                    color var(--duration-quick) var(--ease-out-2);
             }
 
             &:hover {
-                opacity: 1;
+                --_link-alpha: 1;
                 text-decoration: none;
             }
         }

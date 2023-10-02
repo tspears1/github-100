@@ -1,14 +1,21 @@
 @use '@styles/abstracts/mixins/buttons' as btn;
 
 .card {
+    $b: &;
+
     --card-background-color: var(--surface-2);
+    --card-box-shadow: var(--shadow-3);
+    --card-header-pseudo-opacity: 0;
     --card-padding-block: var(--size-fluid-1);
     --card-padding-inline: var(--size-fluid-1);
+    --card-ranking-color: var(--surface-4);
+    --card-ranking-opacity: 0.8;
+    --card-scale: 1;
 
     align-content: start;
     background: var(--card-background-color);
     border-radius: var(--radius-3);
-    box-shadow: var(--shadow-3);
+    box-shadow: var(--card-box-shadow);
     display: grid;
     gap: var(--card-padding-block);
     grid-template-rows: max-content 1fr max-content;
@@ -16,14 +23,41 @@
     padding-block: var(--card-padding-block);
     padding-inline: var(--card-padding-inline);
     position: relative;
+    scale: var(--card-scale);
+    transition:
+        box-shadow var(--duration-fast) var(--ease-out-3),
+        scale var(--duration-fast) var(--ease-out-3);
+
+    @media (any-hover: hover) {
+        &:hover {
+            --card-box-shadow: var(--shadow-4);
+            --card-header-pseudo-opacity: 1;
+            --card-ranking-color: var(--brand);
+            --card-ranking-opacity: 1;
+            --card-scale: 1.04;
+        }
+    }
 
     &__header {
         aspect-ratio: var(--ratio-ultrawide);
         background-image: var(--gradient-23);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 120%;
         border-radius: 0.5rem;
         display: grid;
         inline-size: 100%;
         position: relative;
+
+        &::before {
+            background-image: var(--gradient-3);
+            border-radius: inherit;
+            content: '';
+            inset: 0;
+            opacity: var(--card-header-pseudo-opacity);
+            position: absolute;
+            transition: opacity var(--duration-fast) var(--ease-out-3);
+        }
     }
 
     &__eyebrow {
@@ -128,9 +162,12 @@
     }
 
     &__ranking {
-        color: var(--surface-4);
+        color: var(--card-ranking-color);
         font-family: var(--font-pixel);
         font-size: var(--font-size-fluid-2);
-        opacity: 0.8;
+        opacity: var(--card-ranking-opacity);
+        transition:
+            color var(--duration-fast) var(--ease-out-3),
+            opacity var(--duration-fast) var(--ease-out-3);
     }
 }
