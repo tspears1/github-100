@@ -1,0 +1,11 @@
+
+.card-grid {
+
+    &__list {
+        display: grid;
+        gap: var(--size-fluid-4);
+        grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
+        padding-block: var(--size-fluid-4);
+        padding-inline: var(--size-fluid-4);
+    }
+}

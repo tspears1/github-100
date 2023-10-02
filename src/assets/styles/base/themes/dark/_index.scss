@@ -1,0 +1,71 @@
+:where(html) {
+    --brand-dark:               var(--pink-8);
+    --brand-dark-hsl:           var(--pink-8-hsl);
+
+    --text-1-dark:              var(--slate-50);
+    --text-1-dark-hsl:          var(--slate-50-hsl);
+    --text-2-dark:              var(--slate-200);
+    --text-2-dark-hsl:          var(--slate-200-hsl);
+
+    --surface-1-dark:           var(--slate-900);
+    --surface-1-dark-hsl:       var(--slate-900-hsl);
+    --surface-2-dark:           var(--slate-800);
+    --surface-2-dark-hsl:       var(--slate-800-hsl);
+    --surface-3-dark:           var(--slate-700);
+    --surface-3-dark-hsl:       var(--slate-700-hsl);
+    --surface-4-dark:           var(--slate-600);
+    --surface-4-dark-hsl:       var(--slate-600-hsl);
+
+    --surface-shadow-dark:      var(--slate-950-hsl);
+    --shadow-strength-dark:     25%;
+}
+
+@media (prefers-color-scheme: dark) {
+    :where(html) {
+        color-scheme: dark;
+
+        --brand:                var(--brand-dark);
+        --brand-hsl:            var(--brand-dark-hsl);
+
+        --text-1:               var(--text-1-dark);
+        --text-1-hsl:           var(--text-1-dark-hsl);
+        --text-2:               var(--text-2-dark);
+        --text-2-hsl:           var(--text-2-dark-hsl);
+
+        --surface-1:            var(--surface-1-dark);
+        --surface-1-hsl:        var(--surface-1-dark-hsl);
+        --surface-2:            var(--surface-2-dark);
+        --surface-2-hsl:        var(--surface-2-dark-hsl);
+        --surface-3:            var(--surface-3-dark);
+        --surface-3-hsl:        var(--surface-3-dark-hsl);
+        --surface-4:            var(--surface-4-dark);
+        --surface-4-hsl:        var(--surface-4-dark-hsl);
+
+        --shadow-color:         var(--surface-shadow-dark);
+        --shadow-strength:      var(--shadow-strength-dark);
+    }
+}
+
+[color-scheme='dark'] {
+    color-scheme: dark;
+
+    --brand:                var(--brand-dark);
+    --brand-hsl:            var(--brand-dark-hsl);
+
+    --text-1:               var(--text-1-dark);
+    --text-1-hsl:           var(--text-1-dark-hsl);
+    --text-2:               var(--text-2-dark);
+    --text-2-hsl:           var(--text-2-dark-hsl);
+
+    --surface-1:            var(--surface-1-dark);
+    --surface-1-hsl:        var(--surface-1-dark-hsl);
+    --surface-2:            var(--surface-2-dark);
+    --surface-2-hsl:        var(--surface-2-dark-hsl);
+    --surface-3:            var(--surface-3-dark);
+    --surface-3-hsl:        var(--surface-3-dark-hsl);
+    --surface-4:            var(--surface-4-dark);
+    --surface-4-hsl:        var(--surface-4-dark-hsl);
+
+    --shadow-color:         var(--surface-shadow-dark);
+    --shadow-strength:      var(--shadow-strength-dark);
+}

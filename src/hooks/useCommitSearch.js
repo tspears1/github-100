@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Octokit } from 'octokit'
-import { useAuthToken } from '../hooks/useAuthToken'
+import { useAuthToken } from './useAuthToken'
 
 /**
  * @typedef {Object} CommitSearchParams

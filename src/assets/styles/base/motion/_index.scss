@@ -1,0 +1,22 @@
+:where(html) {
+    /* Transition Duration ------------------------------------------------------ */
+    --duration-quick:           150ms;
+    --duration-fast:            300ms;
+    --duration-moderate:        500ms;
+    --duration-slow:            750ms;
+    --duration-gentle:          1200ms;
+    --duration-adagio:          1600ms;
+    --duration-largo:           2000ms;
+    --duration-grave:           2500ms;
+
+    @media (prefers-reduced-motion: reduce) {
+        --duration-quick:       0;
+        --duration-fast:        0;
+        --duration-moderate:    0;
+        --duration-slow:        0;
+        --duration-gentle:      0;
+        --duration-adagio:      0;
+        --duration-largo:       0;
+        --duration-grave:       0;
+    }
+}

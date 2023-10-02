@@ -1,0 +1,71 @@
+:where(html) {
+    --brand-light:               var(--purple-8);
+    --brand-light-hsl:           var(--purple-8-hsl);
+
+    --text-1-light:              var(--slate-950);
+    --text-1-light-hsl:          var(--slate-950-hsl);
+    --text-2-light:              var(--slate-800);
+    --text-2-light-hsl:          var(--slate-800-hsl);
+
+    --surface-1-light:           var(--slate-100);
+    --surface-1-light-hsl:       var(--slate-100-hsl);
+    --surface-2-light:           var(--slate-200);
+    --surface-2-light-hsl:       var(--slate-200-hsl);
+    --surface-3-light:           var(--slate-300);
+    --surface-3-light-hsl:       var(--slate-300-hsl);
+    --surface-4-light:           var(--slate-400);
+    --surface-4-light-hsl:       var(--slate-400-hsl);
+
+    --surface-shadow-light:      var(--slate-600-hsl);
+    --shadow-strength-light:     10%;
+}
+
+@media (prefers-color-scheme: light) {
+    :where(html) {
+        color-scheme: light;
+
+        --brand:                var(--brand-light);
+        --brand-hsl:            var(--brand-light-hsl);
+
+        --text-1:               var(--text-1-light);
+        --text-1-hsl:           var(--text-1-light-hsl);
+        --text-2:               var(--text-2-light);
+        --text-2-hsl:           var(--text-2-light-hsl);
+
+        --surface-1:            var(--surface-1-light);
+        --surface-1-hsl:        var(--surface-1-light-hsl);
+        --surface-2:            var(--surface-2-light);
+        --surface-2-hsl:        var(--surface-2-light-hsl);
+        --surface-3:            var(--surface-3-light);
+        --surface-3-hsl:        var(--surface-3-light-hsl);
+        --surface-4:            var(--surface-4-light);
+        --surface-4-hsl:        var(--surface-4-light-hsl);
+
+        --shadow-color:         var(--surface-shadow-light);
+        --shadow-strength:      var(--shadow-strength-light);
+    }
+}
+
+:is([color-scheme='light']) {
+    color-scheme: light;
+
+    --brand:                var(--brand-light);
+    --brand-hsl:            var(--brand-light-hsl);
+
+    --text-1:               var(--text-1-light);
+    --text-1-hsl:           var(--text-1-light-hsl);
+    --text-2:               var(--text-2-light);
+    --text-2-hsl:           var(--text-2-light-hsl);
+
+    --surface-1:            var(--surface-1-light);
+    --surface-1-hsl:        var(--surface-1-light-hsl);
+    --surface-2:            var(--surface-2-light);
+    --surface-2-hsl:        var(--surface-2-light-hsl);
+    --surface-3:            var(--surface-3-light);
+    --surface-3-hsl:        var(--surface-3-light-hsl);
+    --surface-4:            var(--surface-4-light);
+    --surface-4-hsl:        var(--surface-4-light-hsl);
+
+    --shadow-color:         var(--surface-shadow-light);
+    --shadow-strength:      var(--shadow-strength-light);
+}

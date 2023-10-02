@@ -21,15 +21,18 @@ import { useAuthToken } from '../hooks/useAuthToken'
  * @property {string[]} topics - The topics of the repository.
  * @property {string} description - The description of the repository.
  * @property {string} avatar - The avatar url of the owner of the repository.
+ * @property {string} fullname - The full name of the repository in the format of owner/name.
+ * @property {number} rank - The rank of the repository.
  */
 
 /**
- * Get the top starred repositories from GitHub.
+ * Get the top starred repositories from GitHub and add them to a piece of state.
  *
+ * @param {function} setter - The setter function to update the state.
  * @param {RepositorySearchParams} options
  * @returns {FilteredData[]}
  */
-const useRepoSearch = ({
+const useRepoSearch = (setter, {
     q= 'stars:>1000',
     sort= 'stars',
     order= 'desc',
@@ -38,7 +41,7 @@ const useRepoSearch = ({
 } = {}) => {
 
     // Data storage.
-    const data = useRef(null)
+    const data = useRef([])
     const token = useAuthToken()
 
     /**
@@ -50,7 +53,7 @@ const useRepoSearch = ({
     const filterData = (unfilteredData) => {
         if (!unfilteredData) return
 
-        const filtered = unfilteredData?.items.map((item) => {
+        const filtered = unfilteredData?.items.map((item, index) => {
             return {
                 id: item.id,
                 name: item.name,
@@ -60,8 +63,11 @@ const useRepoSearch = ({
                 topics: item.topics,
                 description: item.description,
                 avatar: item.owner.avatar_url,
+                fullname: item.full_name,
+                rank: index + 1
             }
         })
+        setter(filtered)
         return data.current = filtered
     }
 
@@ -71,7 +77,7 @@ const useRepoSearch = ({
         /**
          * Fetch the data from the GitHub API. Then filter it and store it.
          *
-         * @return {void}
+         * @return {Promise<FilteredData[]>}
          */
         const fetchData = async () => {
             await octokit.request('GET /search/repositories', {
