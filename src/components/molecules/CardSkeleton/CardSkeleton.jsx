@@ -1,28 +1,24 @@
 import { motion } from 'framer-motion'
+import { useColumns } from '@context/columns'
 
 const motionVariants = {
     initial: {
         opacity: 0,
-        transition: {
-            duration: 0.5,
-        }
     },
     animate: {
-        opacity: 1,
-        transition: {
-            duration: 0.5,
-        }
+        opacity: 0.6,
     },
     exit: {
         opacity: 0,
         y: 20,
-        transition: {
-            duration: 0.5,
-        }
     }
 }
 
 const CardSkeleton = ({ index }) => {
+
+    // Get number of columns from context.
+    const { columns } = useColumns()
+
     return (
         <motion.article
             className="card"
@@ -32,6 +28,13 @@ const CardSkeleton = ({ index }) => {
             initial='initial'
             animate='animate'
             exit='exit'
+            transition={{
+                delay: index % columns * 0.05,
+                bounce: 0.85,
+                type: 'spring',
+                mass: 0.1,
+                stiffness: 70
+            }}
         >
             <div className="card__header">
                 <div className="card__eyebrow">

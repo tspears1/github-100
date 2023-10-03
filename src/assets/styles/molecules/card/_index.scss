@@ -122,6 +122,20 @@
         position: absolute;
     }
 
+    // TODO: IF TIME, add eyebrow psuedos
+    // .card__eyebrow::before {
+    //     content: '';
+    //     position: absolute;
+    //     block-size: 2.5em;
+    //     aspect-ratio: 1;
+    //     top: calc(100% + -30px);
+    //     background-color: inherit;
+    //     left: calc(var(--card-padding-block) - 35px);
+    //     background: radial-gradient(circle at bottom right,transparent 11px, var(--card-background-color) 0) bottom right;
+    //     background-size: 50% 50%;
+    //     background-repeat: no-repeat;
+    // }
+
     &__eyebrow-icon {
         &:is(.material-symbols-rounded) {
             font-size: 1.5em !important;

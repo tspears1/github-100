@@ -11,7 +11,14 @@ const RepoContext = createContext()
  */
 const useRepoData = () => useContext(RepoContext)
 
-const RepoDataContext = ({ children }) => {
+/**
+ * Repo data context provider.
+ *
+ * @param {Object} props
+ * @param {Object} props.children - React children.
+ * @returns {Object} RepoContext.Provider
+ */
+const RepoContextProvider = ({ children }) => {
     const [repos, setRepos] = useState([])
     const [commits, setCommits] = useState([])
 
@@ -41,4 +48,4 @@ const RepoDataContext = ({ children }) => {
     )
 }
 
-export { RepoDataContext, useRepoData }
+export { RepoContextProvider, useRepoData }

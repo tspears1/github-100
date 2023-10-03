@@ -1,11 +1,14 @@
-import { RepoDataContext } from "@context/repo-data"
+import { RepoContextProvider } from "@context/repo-data"
+import { ColumnsContextProvider } from "@context/columns"
 
 const Layout = ({ children }) => {
 
     return (
-        <RepoDataContext>
-            { children }
-        </RepoDataContext>
+        <RepoContextProvider>
+            <ColumnsContextProvider>
+                { children }
+            </ColumnsContextProvider>
+        </RepoContextProvider>
     )
 }
 

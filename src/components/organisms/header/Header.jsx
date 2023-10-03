@@ -20,12 +20,12 @@ const Header = () => {
                                 href='https://github.com/tspears1/github-100'
                                 className='site-utility__button button button--outline'
                                 target='_blank'
-                                title='View the Code'
+                                title='View the Source'
                             >
-                                <span className='sr-only'>View the Code</span>
+                                <span className='sr-only'>View the Source</span>
                                 <span className="icon material-symbols-rounded">data_object</span>
                             </a>
-                            <tool-tip tip-position="block-end">View the Code</tool-tip>
+                            <tool-tip tip-position="block-end">View the Source</tool-tip>
                         </li>
                         <li className='site-utility__item has--tooltip'>
                             <ThemeToggle />

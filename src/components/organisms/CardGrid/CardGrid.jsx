@@ -20,8 +20,6 @@ const CardGrid = () => {
             <ul className="card-grid__list">
                     <AnimatePresence>
                         { !data.repos.length && skeletons }
-                    </AnimatePresence>
-                    <AnimatePresence>
                         { data.repos.length && cards }
                     </AnimatePresence>
             </ul>
