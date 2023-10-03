@@ -1,16 +1,33 @@
 .card-grid {
 
     &__list {
+        --card-grid-columns: 1;
         container-name: card-grid;
         container-type: inline-size;
         display: grid;
         gap: var(--size-fluid-4);
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(var(--card-grid-columns), 1fr);
         padding-block: var(--size-fluid-4);
         padding-inline: var(--size-fluid-4);
 
-        @container root (min-width: 32rem) {
-            grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+        // 800px
+        @container root (min-width: 50rem) {
+            --card-grid-columns: 2;
+        }
+
+        // 1200px
+        @container root (min-width: 75rem) {
+            --card-grid-columns: 3;
+        }
+
+        // 1760px
+        @container root (min-width: 110rem) {
+            --card-grid-columns: 4;
+        }
+
+        // 2240px
+        @container root (min-width: 140rem) {
+            --card-grid-columns: 5;
         }
     }
 }

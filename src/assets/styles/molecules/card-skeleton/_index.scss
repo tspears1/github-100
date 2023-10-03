@@ -1,0 +1,54 @@
+
+%shimmer {
+    animation: var(--animation-blink);
+    animation-duration: var(--duration-grave);
+    animation-delay: calc(var(--duration-quick) * var(--card-index));
+    background: var(--placeholder-bg);
+}
+.card[data-skeleton] {
+    --placeholder-bg: hsl(var(--surface-3-hsl) / 0.25);
+    pointer-events: none;
+
+    .card__eyebrow {
+        block-size: 30%;
+        inline-size: 30%;
+    }
+
+    .card__header {
+        @extend %shimmer;
+    }
+
+    .card__body {
+        gap: var(--card-padding-block);
+    }
+
+    .card__title {
+        @extend %shimmer;
+        block-size: var(--card-font-size-title);
+        inline-size: 60%;
+
+        &::after { content: none; }
+    }
+
+    .card__author {
+        @extend %shimmer;
+        block-size: var(--card-font-size-author);
+        inline-size: 30%;
+    }
+
+    .card__description {
+        @extend %shimmer;
+        block-size: var(--card-font-size-description);
+    }
+
+    .card__button {
+        @extend %shimmer;
+        block-size: calc(var(--card-font-size-title) * 2);
+    }
+
+    .card__ranking-hold {
+        @extend %shimmer;
+        block-size: calc(var(--card-font-size-title) * 2);
+        inline-size: 50cqi;
+    }
+}

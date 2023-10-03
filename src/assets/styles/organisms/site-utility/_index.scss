@@ -2,7 +2,7 @@
 
     &__list {
         display: grid;
-        gap: var(--size-fluid-1);
+        gap: var(--size-fluid-2);
         grid-auto-columns: max-content;
         grid-auto-flow: column;
         grid-template-columns: 3rem;

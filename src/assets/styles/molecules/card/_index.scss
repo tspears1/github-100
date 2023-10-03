@@ -163,11 +163,11 @@
 
         @container root (min-width: 32rem) {
             &::after {
-                content: '';
-                display: block;
+                background: hsl(var(--surface-3-hsl) / 0.15);
                 block-size: 0.5rem;
                 border-radius: var(--radius-2);
-                background: hsl(var(--surface-3-hsl) / 0.15);
+                content: '';
+                display: block;
                 inline-size: 100%;
                 margin-block-start: var(--_title-spacing);
             }
@@ -202,6 +202,7 @@
 
     &__description {
         display: none;
+
         @container root (min-width: 32rem) {
             display: block;
             font-size: var(--card-font-size-description);
