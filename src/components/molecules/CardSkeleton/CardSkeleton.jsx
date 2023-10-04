@@ -11,6 +11,7 @@ const motionVariants = {
     exit: {
         opacity: 0,
         y: 20,
+        scale: 0.8,
     }
 }
 

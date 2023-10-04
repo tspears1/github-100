@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { GithubIcon } from '@icons/Github'
 import ThemeToggle from '@components/atoms/ThemeToggle/ThemeToggle'
-import Filters from '@components/organisms/Filters/Filters'
+// import Filters from '@components/organisms/Filters/Filters'
 import { useElementSize } from '@hooks/useElementSize'
 
 const Header = () => {

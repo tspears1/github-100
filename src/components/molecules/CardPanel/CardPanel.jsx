@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useRepoData } from '@context/repo-data'
+import { formatRank } from '@utils/formatters/card-formatter'
+import '@types/typedef'
 
 const CardPanel = ({ selectedId }) => {
 
     const { repos, setSelectedId } = useRepoData()
-
     const [ currentRepo, setCurrentRepo ] = useState(null)
 
     useEffect(() => {
@@ -13,19 +14,34 @@ const CardPanel = ({ selectedId }) => {
             const _currentRepo = repos.find(repo => repo.id === selectedId)
             setCurrentRepo(_currentRepo)
         }
-    }, [selectedId, repos])
+    }, [selectedId])
 
-    const { name, description, owner, stars, avatar, index } = currentRepo || {}
-    // Formatted rank with leading zeros.
-    const rank = index ? index + 1 : 0
-    const ranking = rank < 10 ? `00${ rank }` : rank < 100 ? `0${ rank }` : rank
+    /** @type {RepositoryData} */
+    const { name, description, owner, stars, avatar, index, commits } = currentRepo || {}
+
+    const ranking = formatRank(index)
+
+    /** @type {AnimationProps.variants} */
+    const motionVariants = {
+        show: {
+            opacity: 1,
+            y: 0,
+            scale: 1
+        },
+        hide: {
+            opacity: 0,
+            y: 100,
+            scale: 0.8
+        }
+    }
 
     return (
         <motion.article
             className="card card-panel"
-            initial={{ opacity: 0, y: 100 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 100 }}
+            variants={motionVariants}
+            initial='hide'
+            whileInView='show'
+            exit='hide'
         >
             <div className="card__header">
                 <div className="card__eyebrow">
@@ -45,6 +61,7 @@ const CardPanel = ({ selectedId }) => {
                         { name }
                     </button>
                 </div>
+                <div>Commits: { commits?.length ?? 'n/a' }</div>
                 <div className="card__description">{ description }</div>
             </div>
 

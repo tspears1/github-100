@@ -1,34 +1,48 @@
 import { motion } from 'framer-motion'
 import { useColumns } from '@context/columns'
 import { useRepoData } from '@context/repo-data'
+import { summarize, formatRank } from '@utils/formatters/card-formatter'
+import '@types/typedef'
 
 const Card = ({ content, index: sortIndex }) => {
-    // Destructure content object.
-    const { id, name, description, owner, stars, avatar, index: cardIndex } = content
-
-    //TODO: Create utility function for this.
-    // Cut description to 80 characters and add ellipsis.
-    const summary = description.length > 80 ? `${ description.substring(0, 80) }...` : description
-
-    //TODO: Create utility function for this.
-    // Formatted rank with leading zeros.
-    const rank = cardIndex ? cardIndex + 1 : 0
-    const ranking = rank < 10 ? `00${ rank }` : rank < 100 ? `0${ rank }` : rank
-
-    // Get number of columns from context.
-    const { columns } = useColumns()
 
     const { setSelectedId } = useRepoData()
+    const { columns } = useColumns()
 
-    //TODO Comments and cleanup
+    /** @type {RepositoryData} */
+    const { id, name, description, owner, stars, avatar, index: cardIndex } = content
+
+    const ranking = formatRank(cardIndex)
+    const summary = summarize(description)
+
+    /**
+     * Set the selected ID in context on click.
+     *
+     * @returns {void}
+     */
     const handleClick = () => setSelectedId(id)
+
+    /** @type {AnimationProps.variants} */
+    const motionVariants = {
+        show: {
+            opacity: 1,
+            y: 0,
+            scale: 1
+        },
+        hide: {
+            opacity: 0,
+            y: 100,
+            scale: 0.8
+        }
+    }
 
     return (
         <motion.article
             className="card"
-            initial={{ opacity: 0, y: 100 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 100 }}
+            variants={motionVariants}
+            initial='hide'
+            whileInView='show'
+            exit='hide'
             transition={{
                 delay: sortIndex % columns * 0.1,
                 bounce: 0.85,

@@ -6,12 +6,13 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@styles': '/src/assets/styles',
-      '@images': '/src/assets/images',
-      '@icons': '/src/assets/icons',
       '@components': '/src/components',
       '@context': '/src/context',
       '@hooks': '/src/hooks',
+      '@icons': '/src/assets/icons',
+      '@images': '/src/assets/images',
+      '@styles': '/src/assets/styles',
+      '@types': '/src/types',
       '@utils': '/src/utils',
     }
   },
