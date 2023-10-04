@@ -21,6 +21,7 @@ const useRepoData = () => useContext(RepoContext)
 const RepoContextProvider = ({ children }) => {
     const [repos, setRepos] = useState([])
     const [commits, setCommits] = useState([])
+    const [selectedId, setSelectedId] = useState(null)
 
     useRepoSearch(setRepos)
 
@@ -28,6 +29,7 @@ const RepoContextProvider = ({ children }) => {
         if (repos.length > 0) {
             const _commitData = repos.map(repo => {
                 return {
+                    id: repo.id,
                     name: repo.fullname,
                     commits: []
                 }
@@ -41,7 +43,9 @@ const RepoContextProvider = ({ children }) => {
             repos,
             setRepos,
             commits,
-            setCommits
+            setCommits,
+            selectedId,
+            setSelectedId
         }}>
             {children}
         </RepoContext.Provider>

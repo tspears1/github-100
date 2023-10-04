@@ -1,18 +1,27 @@
 import { motion } from 'framer-motion'
 import { useColumns } from '@context/columns'
+import { useRepoData } from '@context/repo-data'
 
-const Card = ({ content, index }) => {
+const Card = ({ content, index: sortIndex }) => {
     // Destructure content object.
-    const { name, description, owner, stars, avatar, rank } = content
+    const { id, name, description, owner, stars, avatar, index: cardIndex } = content
 
+    //TODO: Create utility function for this.
     // Cut description to 80 characters and add ellipsis.
     const summary = description.length > 80 ? `${ description.substring(0, 80) }...` : description
 
+    //TODO: Create utility function for this.
     // Formatted rank with leading zeros.
+    const rank = cardIndex ? cardIndex + 1 : 0
     const ranking = rank < 10 ? `00${ rank }` : rank < 100 ? `0${ rank }` : rank
 
     // Get number of columns from context.
     const { columns } = useColumns()
+
+    const { setSelectedId } = useRepoData()
+
+    //TODO Comments and cleanup
+    const handleClick = () => setSelectedId(id)
 
     return (
         <motion.article
@@ -21,7 +30,7 @@ const Card = ({ content, index }) => {
             whileInView={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 100 }}
             transition={{
-                delay: index % columns * 0.1,
+                delay: sortIndex % columns * 0.1,
                 bounce: 0.85,
                 type: 'spring',
                 mass: 0.1,
@@ -42,7 +51,10 @@ const Card = ({ content, index }) => {
                     { owner }
                 </div>
                 <div className="card__title">
-                    <button className="card__link">
+                    <button
+                        className="card__link"
+                        onClick={ handleClick }
+                    >
                         { name }
                     </button>
                 </div>

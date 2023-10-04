@@ -1,7 +1,7 @@
 import { RepoContextProvider } from "@context/repo-data"
 import { ColumnsContextProvider } from "@context/columns"
 
-const Layout = ({ children }) => {
+const ContextProviders = ({ children }) => {
 
     return (
         <RepoContextProvider>
@@ -12,4 +12,4 @@ const Layout = ({ children }) => {
     )
 }
 
-export default Layout
+export default ContextProviders

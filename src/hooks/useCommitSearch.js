@@ -38,14 +38,6 @@ const useCommitSearch = (repoFullName,{
     const data = useRef(null)
     const token = useAuthToken()
 
-    // Get the date string to search commits before based on the deadline.
-    const _timestamp = new Date()
-    _timestamp.setMinutes(_timestamp.getMinutes() - deadline)
-    const deadlineTimestamp = _timestamp.toISOString()
-
-    // Create the query string.
-    const query = `repo:${repoFullName} author-date:>${deadlineTimestamp}`
-
     /**
      * Filter the data to only the fields we need.
      *
@@ -66,6 +58,19 @@ const useCommitSearch = (repoFullName,{
     }
 
     useEffect(() => {
+
+        // If there is no repoFullName, return.
+        if (!repoFullName) return
+
+        // Get the date string to search commits before based on the deadline.
+        const _timestamp = new Date()
+        _timestamp.setMinutes(_timestamp.getMinutes() - deadline)
+        const deadlineTimestamp = _timestamp.toISOString()
+
+        // Create the query string.
+        const query = `repo:${repoFullName} author-date:>${deadlineTimestamp}`
+
+        // Create the Octokit instance.
         const octokit = new Octokit({ auth: token })
 
         /**
@@ -87,8 +92,9 @@ const useCommitSearch = (repoFullName,{
             })
         }
         fetchData()
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [query, sort, order, per_page, page])
+    }, [repoFullName, sort, order, per_page, page])
 
     return data
 }

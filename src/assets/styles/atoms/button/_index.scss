@@ -31,7 +31,7 @@
 
     &--outline {
         --_button-background-color:     var(--button-background-color, inherit);
-        --_button-border-color:         var(--button-border-color, hsl(var(--text-2-hsl) / 0.25));
+        --_button-border-color:         var(--button-border-color, hsl(var(--text-2-hsl) / 0.40));
         --_button-highlight-color:      var(--button-highlight-color, hsl(var(--brand-hsl) / 0.75));
 
         @media (prefers-reduced-motion: no-preference) {

@@ -1,11 +1,20 @@
+import { useEffect, useRef } from 'react'
 import { GithubIcon } from '@icons/Github'
 import ThemeToggle from '@components/atoms/ThemeToggle/ThemeToggle'
 import Filters from '@components/organisms/Filters/Filters'
+import { useElementSize } from '@hooks/useElementSize'
 
 const Header = () => {
 
+    const headerRef = useRef(null)
+    const { height: headerHeight } = useElementSize(headerRef)
+
+    useEffect(() => {
+        document.documentElement.style.setProperty('--header-height', `${headerHeight}px`)
+    }, [headerHeight])
+
     return (
-        <header className='site-header'>
+        <header className='site-header' ref={headerRef}>
             <div className="site-header__grid">
                 <div className='site-header__brand'>
                     <div className='site-header__logo'>
@@ -34,7 +43,7 @@ const Header = () => {
                     </ul>
                 </nav>
             </div>
-            <Filters />
+            {/* <Filters /> */}
         </header>
     )
 }

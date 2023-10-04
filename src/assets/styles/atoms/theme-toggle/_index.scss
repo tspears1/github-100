@@ -1,6 +1,6 @@
 .theme-toggle {
     --size: 1.5rem;
-    --icon-fill: var(--surface-4);
+    --icon-fill: hsl(var(--text-1-hsl) / 0.5);
     --icon-fill-hover: var(--text-2);
 
     -webkit-tap-highlight-color: transparent;

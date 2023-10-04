@@ -55,6 +55,7 @@ const useRepoSearch = (setter, {
 
         const filtered = unfilteredData?.items.map((item, index) => {
             return {
+                index,
                 id: item.id,
                 name: item.name,
                 owner: item.owner.login,
@@ -64,7 +65,7 @@ const useRepoSearch = (setter, {
                 description: item.description,
                 avatar: item.owner.avatar_url,
                 fullname: item.full_name,
-                rank: index + 1
+                commits: [],
             }
         })
         setter(filtered)

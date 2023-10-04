@@ -1,0 +1,18 @@
+.footer-bar {
+    backdrop-filter: brightness(100%) blur(4px);
+    background-color: transparent;
+    background-image:
+        radial-gradient( rgba(0,0,0,0) 1px, var(--surface-2) 1px ),
+        linear-gradient(0deg, hsl(var(--surface-1-hsl) / 0.5), transparent);
+    background-repeat: repeat, no-repeat;
+    background-size: 4px 4px, cover;
+    inset: 0;
+    position: sticky;
+    z-index: var(--layer-4);
+
+    &__grid {
+        display: grid;
+        padding-block: var(--size-fluid-2);
+        place-items: center;
+    }
+}

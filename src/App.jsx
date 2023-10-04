@@ -1,15 +1,17 @@
 import Header from "@components/organisms/Header/Header"
-import Layout from "@components/organisms/Layout/Layout"
+import ContextProviders from "@components/organisms/ContextProviders/ContextProviders"
 import CardGrid from "@components/organisms/CardGrid/CardGrid"
+import FooterBar from "@components/organisms/FooterBar/FooterBar"
 
 const App = () => {
 
   return (
     <>
-      <Layout>
+      <ContextProviders>
         <Header />
         <CardGrid />
-      </Layout>
+        <FooterBar />
+      </ContextProviders>
     </>
   )
 }
