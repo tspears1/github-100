@@ -1,6 +1,7 @@
 .card-panel {
-    position: sticky;
-    inset: 10vh 25vw;
-    block-size: 80vh;
-    inline-size: min(100%, 50vw);
+    position: fixed;
+    inset: 0;
+    max-block-size: 80vh;
+    max-inline-size: min(100%, 50vw);
+    z-index: var(--layer-5);
 }

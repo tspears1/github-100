@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useColumns } from '@context/columns'
 import { useRepoData } from '@context/repo-data'
@@ -6,7 +7,8 @@ import '@types/typedef'
 
 const Card = ({ content, index: sortIndex }) => {
 
-    const { setSelectedId } = useRepoData()
+    const { locked, setLocked } = useState(false)
+    const { selectedId, setSelectedId } = useRepoData()
     const { columns } = useColumns()
 
     /** @type {RepositoryData} */
@@ -33,7 +35,16 @@ const Card = ({ content, index: sortIndex }) => {
             opacity: 0,
             y: 100,
             scale: 0.8
-        }
+        },
+        fade: {
+            opacity: 0.2,
+            y: 0,
+            scale: 0.8,
+            transition: {
+                delay: 0,
+                duration: 0.25,
+            }
+        },
     }
 
     return (

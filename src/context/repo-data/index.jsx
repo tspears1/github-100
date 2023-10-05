@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext, useContext } from 'react'
-import { useRepoSearch } from '@hooks/useRepoSearch'
 import { getCommits } from '@utils/getters/getCommits'
+import { getRepos } from '@utils/getters/getRepos'
 
 // Create context for repo data.
 const RepoContext = createContext()
@@ -23,8 +23,28 @@ const RepoContextProvider = ({ children }) => {
     const [repos, setRepos] = useState([])
     const [selectedId, setSelectedId] = useState(null)
 
-    useRepoSearch(setRepos)
+    /**
+     * Get repos on initial render.
+     *
+     * @returns {Promise<void>}
+     */
+    useEffect(() => {
+        // If there are repos, return.
+        if (repos.length) return
 
+        // If there are no repos, get the repos.
+        const fetchRepos = async () => {
+            const _repos = await getRepos()
+            setRepos(_repos)
+        }
+        fetchRepos()
+    }, [repos])
+
+    /**
+     * Get commits when a repo is selected.
+     *
+     * @returns {Promise<void>}
+     */
     useEffect(() => {
         // If there is no selectedId, return.
         // This is to prevent the useEffect from running on initial render or when null.

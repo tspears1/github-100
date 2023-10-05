@@ -1,6 +1,5 @@
 :where(body) {
-    container-name: root;
-    container-type: inline-size;
+    position: relative;
 }
 
 :where(ul, ol)[class] {
