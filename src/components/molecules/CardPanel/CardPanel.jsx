@@ -72,11 +72,36 @@ const CardPanel = ({ selectedId }) => {
                     <div className="card-panel__author">
                         { owner }
                     </div>
-                    <div className="card-panel__title">
+                    <h2 className="card-panel__title">
                         { name }
-                    </div>
-                    <div>Commits: { commits?.length ?? 'n/a' }</div>
+                    </h2>
                     <div className="card-panel__description">{ description }</div>
+                        <div className="card-panel__commits">
+                            <h3 className="card-panel__commits-title">Recent Commits</h3>
+                            <ul className="card-panel__commits-list">
+                                {commits?.length &&
+                                    commits.map(commit => (
+                                        <li className="card-panel__commits-item" key={commit.sha}>
+                                            <div className="card-panel__commits-sha">{commit.shortSha}</div>
+                                            <div className="card-panel__commits-item-author">{commit.author}</div>
+                                            <div className="card-panel__commits-item-message">{commit.message}</div>
+                                            <div className="card-panel__commits-item-date">{commit.hours}</div>
+                                            <a className="card-panel__commits-link" href={commit.url} target='_blank'>Link</a>
+                                        </li>
+                                    ))
+                                }
+                                {commits?.length === 0 && (
+                                    <li className="card-panel__commits-item">
+                                        <div className="card-panel__commits-item-message">No recent commits.</div>
+                                    </li>
+                                )}
+                                {!commits && (
+                                    <li className="card-panel__commits-item">
+                                        <div className="card-panel__commits-item-message">Loading...</div>
+                                    </li>
+                                )}
+                            </ul>
+                        </div>
                 </div>
 
                 <div className="card-panel__footer">
