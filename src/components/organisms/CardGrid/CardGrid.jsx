@@ -1,5 +1,5 @@
 // Components ===============================
-import Card from '@components/molecules/card/Card.jsx'
+import Card from '@components/molecules/Card/Card.jsx'
 import CardSkeleton from '@components/molecules/CardSkeleton/CardSkeleton.jsx'
 import CardPanel from '@components/molecules/CardPanel/CardPanel.jsx'
 
