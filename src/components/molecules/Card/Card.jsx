@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, useInView, useAnimate } from 'framer-motion'
 import { useColumns } from '@context/columns'
 import { useRepoData } from '@context/repo-data'
 import { summarize, formatRank } from '@utils/formatters/card-formatter'
@@ -7,12 +7,14 @@ import '@types/typedef'
 
 const Card = ({ content, index: sortIndex }) => {
 
-    const { locked, setLocked } = useState(false)
+    const [locked, setLocked] = useState(false)
+
     const { selectedId, setSelectedId } = useRepoData()
     const { columns } = useColumns()
 
     /** @type {RepositoryData} */
     const { id, name, description, owner, stars, avatar, index: cardIndex } = content
+
 
     const ranking = formatRank(cardIndex)
     const summary = summarize(description)
@@ -23,6 +25,20 @@ const Card = ({ content, index: sortIndex }) => {
      * @returns {void}
      */
     const handleClick = () => setSelectedId(id)
+
+    const [scope, animate] = useAnimate()
+    const isInView = useInView(scope)
+
+    useEffect(() => {
+        if (!isInView) return
+        if (selectedId) {
+            setLocked(true)
+            animate(scope.current, { opacity: 0.2, y: 0, scale: 0.9 }, {duration: 0.5, ease: 'anticipate' })
+        } else {
+            animate(scope.current, { opacity: 1, y: 0, scale: 1 }, {duration: 0.5, ease: 'anticipate' })
+            setLocked(false)
+        }
+    }, [selectedId])
 
     /** @type {AnimationProps.variants} */
     const motionVariants = {
@@ -35,21 +51,13 @@ const Card = ({ content, index: sortIndex }) => {
             opacity: 0,
             y: 100,
             scale: 0.8
-        },
-        fade: {
-            opacity: 0.2,
-            y: 0,
-            scale: 0.8,
-            transition: {
-                delay: 0,
-                duration: 0.25,
-            }
-        },
+        }
     }
 
     return (
         <motion.article
             className="card"
+            ref={scope}
             variants={motionVariants}
             initial='hide'
             whileInView='show'
@@ -61,6 +69,7 @@ const Card = ({ content, index: sortIndex }) => {
                 mass: 0.1,
                 stiffness: 50
             }}
+            inert={locked ? '' : null }
         >
             <div className="card__header">
                 <div className="card__eyebrow">

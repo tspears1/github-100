@@ -8,6 +8,14 @@
         grid-template-columns: 3rem;
     }
 
+    &__item {
+        transition: opacity var(--duration-quick) var(--ease-out-1);
+
+        &[inert] {
+            opacity: 0.2;
+        }
+    }
+
     &__button {
         aspect-ratio: 1;
         display: grid;

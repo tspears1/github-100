@@ -3,11 +3,16 @@ import { motion } from 'framer-motion'
 import { useRepoData } from '@context/repo-data'
 import { formatRank } from '@utils/formatters/card-formatter'
 import '@types/typedef'
+import { useScrollLock } from '@hooks/useScrollLock'
 
 const CardPanel = ({ selectedId }) => {
+    // Lock Body Scroll on mount.
+    useScrollLock()
 
     const { repos, setSelectedId } = useRepoData()
     const [ currentRepo, setCurrentRepo ] = useState(null)
+
+    const resetSelectedId = () => setSelectedId(null)
 
     useEffect(() => {
         if (selectedId) {
@@ -25,56 +30,70 @@ const CardPanel = ({ selectedId }) => {
     const motionVariants = {
         show: {
             opacity: 1,
-            y: 0,
-            scale: 1
+            scale: 1,
+            transition: {
+                duration: 0.5,
+                ease: 'anticipate',
+            }
         },
         hide: {
             opacity: 0,
-            y: 100,
-            scale: 0.8
+            scale: 0.8,
+            transition: {
+                duration: 0.5,
+                ease: 'anticipate',
+            }
         }
     }
 
     return (
-        <motion.article
-            className="card card-panel"
+        <motion.div
+            className='screen'
             variants={motionVariants}
             initial='hide'
-            whileInView='show'
+            animate='show'
             exit='hide'
+            onClick={resetSelectedId}
         >
-            <div className="card__header">
-                <div className="card__eyebrow">
-                    <div className="card__eyebrow-icon material-symbols-rounded">star</div>
-                    <div className="card__eyebrow-text">{ stars?.toLocaleString() }</div>
+            <motion.article
+                className="card-panel"
+                whileInView='show'
+            >
+                <div className="card-panel__header">
+                    <div className="card-panel__eyebrow">
+                        <div className="card-panel__eyebrow-icon material-symbols-rounded">star</div>
+                        <div className="card-panel__eyebrow-text">{ stars?.toLocaleString() }</div>
+                    </div>
+                    <div className="card-panel__avatar">
+                        <img className="lazyload" src={ avatar } alt={ owner } />
+                    </div>
                 </div>
-                <div className="card__avatar">
-                    <img className="lazyload" src={ avatar } alt={ owner } />
-                </div>
-            </div>
-            <div className="card__body">
-                <div className="card__author">
-                    { owner }
-                </div>
-                <div className="card__title">
-                    <button className="card__link" onClick={() => setSelectedId(null)}>
+                <div className="card-panel__body">
+                    <div className="card-panel__author">
+                        { owner }
+                    </div>
+                    <div className="card-panel__title">
                         { name }
+                    </div>
+                    <div>Commits: { commits?.length ?? 'n/a' }</div>
+                    <div className="card-panel__description">{ description }</div>
+                </div>
+
+                <div className="card-panel__footer">
+                    <div className="card-panel__ranking">
+                        { ranking }
+                    </div>
+                    <button
+                        className="card-panel__button button button--outline"
+                        title="Close Repo Details"
+                        onClick={resetSelectedId}
+                    >
+                        <span className="sr-only">Close Repo Details</span>
+                        <span className="card-panel__button-icon material-symbols-rounded">close</span>
                     </button>
                 </div>
-                <div>Commits: { commits?.length ?? 'n/a' }</div>
-                <div className="card__description">{ description }</div>
-            </div>
-
-            <div className="card__footer">
-                <div className="card__ranking">
-                    { ranking }
-                </div>
-                <div className="card__button button button--outline" title="View Repo Details">
-                    <span className="sr-only">View Repo Details</span>
-                    <span className="card__button-icon material-symbols-rounded">add</span>
-                </div>
-            </div>
-        </motion.article>
+            </motion.article>
+        </motion.div>
     )
 }
 

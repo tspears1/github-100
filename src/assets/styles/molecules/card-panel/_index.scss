@@ -1,7 +1,186 @@
+//==========================================================================
+//==[ @component Card Panel ]===============================================
+//==========================================================================
+
 .card-panel {
-    position: fixed;
-    inset: 0;
-    max-block-size: 80vh;
-    max-inline-size: min(100%, 50vw);
-    z-index: var(--layer-5);
+    --card-avatar-size: 8vi;
+    --card-background-color: var(--surface-2);
+    --card-box-shadow: var(--shadow-3);
+    --card-font-size-author: 0.875rem;
+    --card-font-size-description: var(--size-fluid-1);
+    --card-font-size-eyebrow: var(--size-fluid-2);
+    --card-font-size-ranking: var(--font-size-fluid-3);
+    --card-font-size-title: calc(var(--font-size-fluid-1) * 1.3);
+    --card-header-pseudo-opacity: 0;
+    --card-icon-size: 1.5em;
+    --card-padding-block: var(--size-3);
+    --card-padding-inline: var(--size-3);
+    --card-ranking-color: var(--surface-4);
+    --card-ranking-opacity: 0.8;
+    --card-scale: 1;
+
+    align-content: start;
+    background: var(--card-background-color);
+    border-radius: var(--radius-3);
+    box-shadow: var(--card-box-shadow);
+    block-size: max(100%, 80vb);
+    inline-size: min(100%, 50vi);
+    display: grid;
+    gap: var(--card-padding-block);
+    grid-template-rows: max-content 1fr max-content;
+    overflow: hidden;
+    padding-block: var(--card-padding-block);
+    padding-inline: var(--card-padding-inline);
+    position: relative;
+
+    &__header {
+        --_header-gradient: var(--gradient-1);
+
+        aspect-ratio: var(--ratio-ultrawide);
+        background-image: var(--_header-gradient);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 120%;
+        border-radius: 0.5rem;
+        display: grid;
+        inline-size: 100%;
+        position: relative;
+
+        [color-scheme="dark"] & {
+            --_header-gradient: var(--gradient-3);
+        }
+    }
+
+    &__eyebrow {
+        align-items: center;
+        background: var(--card-background-color);
+        border-end-end-radius: 0.5rem;
+        display: grid;
+        font-family: var(--font-mono);
+        font-size: var(--card-font-size-eyebrow);
+        gap: 0.5em;
+        grid-template-columns: max-content auto;
+        inset: calc(var(--card-padding-block) * 0.75 * -1) auto auto calc(var(--card-padding-inline) * 0.75 * -1);
+        letter-spacing: var(--font-letterspacing-4);
+        line-height: 0.75;
+        padding-block: 0.75rem;
+        padding-inline: 0.75rem;
+        position: absolute;
+    }
+
+    &__eyebrow-icon {
+        &:is(.material-symbols-rounded) {
+            font-size: 1.5em !important;
+        }
+    }
+
+    &__eyebrow-text {
+        line-height: 1;
+        margin-block-start: 4px;
+    }
+
+    &__avatar {
+        aspect-ratio: var(--ratio-square);
+        background: var(--card-background-color);
+        border-radius: var(--radius-round);
+        border-end-end-radius: 0;
+        border: calc(var(--card-avatar-size) * 0.12) solid var(--card-background-color);
+        block-size: var(--card-avatar-size);
+        inset: auto calc(var(--card-padding-block) * -1) calc(var(--card-padding-inline) * -1) auto;
+        place-self: end;
+        position: absolute;
+
+        img {
+            block-size: 100%;
+            border-radius: var(--radius-round);
+            inline-size: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__body {
+        align-content: start;
+        display: grid;
+    }
+
+    &__title {
+        --_title-spacing: calc(var(--card-padding-block) * 0.5);
+        margin-block-end: var(--_title-spacing);
+
+        @container root (min-width: 32rem) {
+            &::after {
+                background: hsl(var(--surface-3-hsl) / 0.15);
+                block-size: 0.5rem;
+                border-radius: var(--radius-2);
+                content: '';
+                display: block;
+                inline-size: 100%;
+                margin-block-start: var(--_title-spacing);
+            }
+        }
+    }
+
+    &__link {
+        font-family: var(--font-sans);
+        font-size: var(--card-font-size-title);
+        font-weight: var(--font-weight-7);
+        letter-spacing: var(--font-letterspacing-2);
+        outline: none;
+        text-align: start;
+
+        &::after {
+            content: '';
+            inset: 0;
+            position: absolute;
+        }
+    }
+
+    &__author {
+        color: hsl(var(--text-2-hsl) / 0.8);
+        font-family: var(--font-mono);
+        font-size: var(--card-font-size-author);
+        font-weight: var(--font-weight-3);
+        letter-spacing: var(--font-letterspacing-4);
+        line-height: 1;
+        margin-block-end: calc(var(--card-padding-block) * 0.1);
+    }
+
+    &__description {
+        display: none;
+
+        @container root (min-width: 32rem) {
+            display: block;
+            font-size: var(--card-font-size-description);
+        }
+    }
+
+    &__button {
+        aspect-ratio: var(--ratio-square);
+        display: grid;
+        place-items: center;
+    }
+
+    &__button-icon {
+        &:is(.material-symbols-rounded) {
+            font-size: var(--card-icon-size) !important;
+        }
+    }
+
+    &__footer {
+        align-items: center;
+        display: grid;
+        gap: var(--size-fluid-1);
+        grid-template-columns: auto max-content;
+        justify-content: space-between;
+    }
+
+    &__ranking {
+        color: var(--card-ranking-color);
+        font-family: var(--font-pixel);
+        font-size: var(--card-font-size-ranking);
+        opacity: var(--card-ranking-opacity);
+        transition:
+            color var(--duration-fast) var(--ease-out-3),
+            opacity var(--duration-fast) var(--ease-out-3);
+    }
 }

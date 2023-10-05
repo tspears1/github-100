@@ -95,7 +95,7 @@
     translate: var(--_tooltip-x, 0) var(--_tooltip-y, 0);
     user-select: none;
     will-change: filter;
-    z-index: var(--layer-4);
+    z-index: var(--layer-5);
 
     &::before {
         clip-path: inset(50%);

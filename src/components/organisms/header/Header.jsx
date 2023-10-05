@@ -3,8 +3,10 @@ import { GithubIcon } from '@icons/Github'
 import ThemeToggle from '@components/atoms/ThemeToggle/ThemeToggle'
 // import Filters from '@components/organisms/Filters/Filters'
 import { useElementSize } from '@hooks/useElementSize'
+import { useRepoData } from '@context/repo-data'
 
 const Header = () => {
+    const { selectedId } = useRepoData()
 
     const headerRef = useRef(null)
     const { height: headerHeight } = useElementSize(headerRef)
@@ -24,7 +26,7 @@ const Header = () => {
                 </div>
                 <nav className='site-utility'>
                     <ul className='site-utility__list'>
-                        <li className='site-utility__item has--tooltip'>
+                        <li className='site-utility__item has--tooltip' inert={selectedId ? '' : null }>
                             <a
                                 href='https://github.com/tspears1/github-100'
                                 className='site-utility__button button button--outline'
@@ -36,7 +38,7 @@ const Header = () => {
                             </a>
                             <tool-tip tip-position="block-end">View the Source</tool-tip>
                         </li>
-                        <li className='site-utility__item has--tooltip'>
+                        <li className='site-utility__item has--tooltip' inert={selectedId ? '' : null }>
                             <ThemeToggle />
                             <tool-tip tip-position="block-end">Toggle Theme</tool-tip>
                         </li>

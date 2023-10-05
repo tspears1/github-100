@@ -69,6 +69,7 @@ const RepoContextProvider = ({ children }) => {
         }
         fetchCommits()
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedId])
 
     return(
@@ -83,4 +84,5 @@ const RepoContextProvider = ({ children }) => {
     )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export { RepoContextProvider, useRepoData }
