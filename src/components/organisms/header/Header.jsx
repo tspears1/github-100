@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
-import { GithubIcon } from '@icons/Github'
-import ThemeToggle from '@components/atoms/ThemeToggle/ThemeToggle'
-// import Filters from '@components/organisms/Filters/Filters'
-import { useElementSize } from '@hooks/useElementSize'
+import { GithubIcon } from '@icons/Github.jsx'
+import ThemeToggle from '@components/atoms/ThemeToggle/ThemeToggle.jsx'
+// import Filters from '@components/organisms/Filters/Filters.jsx'
+import { useElementSize } from '@hooks/useElementSize.js'
 import { useRepoData } from '@context/repo-data'
 
 const Header = () => {

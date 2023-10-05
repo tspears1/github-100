@@ -1,13 +1,13 @@
 // Components ===============================
-import Card from '@components/molecules/card/Card'
-import CardSkeleton from '@components/molecules/CardSkeleton/CardSkeleton'
+import Card from '@components/molecules/card/Card.jsx'
+import CardSkeleton from '@components/molecules/CardSkeleton/CardSkeleton.jsx'
+import CardPanel from '@components/molecules/CardPanel/CardPanel.jsx'
 
 // Context ===============================
 import { useRepoData } from '@context/repo-data'
 
 // Motion ===============================
 import { AnimatePresence } from 'framer-motion'
-import CardPanel from '../../molecules/CardPanel/CardPanel'
 
 const CardGrid = () => {
     const { repos, selectedId } = useRepoData()

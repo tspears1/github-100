@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, useInView, useAnimate } from 'framer-motion'
 import { useColumns } from '@context/columns'
 import { useRepoData } from '@context/repo-data'
-import { summarize, formatRank } from '@utils/formatters/card-formatter'
+import { summarize, formatRank } from '@utils/formatters/card-formatter.js'
 import '@types/typedef'
 
 const Card = ({ content, index: sortIndex }) => {

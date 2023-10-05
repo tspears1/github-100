@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext, useContext } from 'react'
-import { useWindowSize } from '@hooks/useWindowSize'
+import { useWindowSize } from '@hooks/useWindowSize.js'
 
 /**
  * @typedef {Object} ColumnBreakpoint

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { useElementSize } from '@hooks/useElementSize'
+import { useElementSize } from '@hooks/useElementSize.js'
 
 // Context ===============================
 import { useRepoData } from '@context/repo-data'

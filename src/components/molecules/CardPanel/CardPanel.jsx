@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useRepoData } from '@context/repo-data'
-import { formatRank } from '@utils/formatters/card-formatter'
+import { formatRank } from '@utils/formatters/card-formatter.js'
+import { useScrollLock } from '@hooks/useScrollLock.js'
 import '@types/typedef'
-import { useScrollLock } from '@hooks/useScrollLock'
 
 const CardPanel = ({ selectedId }) => {
     // Lock Body Scroll on mount.

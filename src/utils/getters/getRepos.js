@@ -1,6 +1,6 @@
 import { Octokit } from 'octokit'
-import { getAuthToken } from '@utils/getters/getAuthToken'
-import { formatRepoData } from '@utils/formatters/repo-formatter'
+import { getAuthToken } from '@utils/getters/getAuthToken.js'
+import { formatRepoData } from '@utils/formatters/repo-formatter.js'
 import '@types/typedef'
 
 /**

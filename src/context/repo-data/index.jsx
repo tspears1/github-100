@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext, useContext } from 'react'
-import { getCommits } from '@utils/getters/getCommits'
-import { getRepos } from '@utils/getters/getRepos'
+import { getCommits } from '@utils/getters/getCommits.js'
+import { getRepos } from '@utils/getters/getRepos.js'
 
 // Create context for repo data.
 const RepoContext = createContext()
