@@ -9,14 +9,14 @@ import '@types/typedef'
 const formatCommitData = (unfilteredData) => {
     const filtered = unfilteredData?.items.map((item) => {
         return {
-            url: item.html_url,
-            author: item.author.login,
-            avatar: item.author.avatar_url,
-            date: item.commit.author.date,
-            message: item.commit.message,
-            sha: item.sha,
-            hours: formatCommitDate(item.commit.author.date),
-            shortSha: formatCommitSha(item.sha)
+            url: item.html_url ?? '',
+            author: item?.author?.login ?? 'unknown',
+            avatar: item?.author?.avatar_url ?? null,
+            date: item?.commit?.author?.date ?? null,
+            message: formatCommitMessage(item?.commit?.message) ?? '',
+            sha: item?.sha ?? '',
+            hours: formatCommitDate(item?.commit?.author?.date),
+            shortSha: formatCommitSha(item?.sha)
         }
     })
     return filtered
@@ -28,7 +28,7 @@ const formatCommitData = (unfilteredData) => {
  * @param {string} sha - The sha of the commit.
  * @return {string}
  */
-const formatCommitSha = (sha) => sha.substring(0, 7)
+const formatCommitSha = (sha) => sha?.substring(0, 7) ?? ''
 
 /**
  * Format the date of the commit to show how many hours/minutes ago it was committed.
@@ -37,16 +37,30 @@ const formatCommitSha = (sha) => sha.substring(0, 7)
  * @return {string}
  */
 const formatCommitDate = (date) => {
+    if (!date) return
     const commitDate = new Date(date)
     const currentDate = new Date()
     const diff = currentDate - commitDate
     const hours = Math.floor(diff / 1000 / 60 / 60)
     // if less than 1 hour, return minutes
     if (hours < 1) {
-        const minutes = Math.floor(diff / 1000 / 60)
+        let minutes = Math.floor(diff / 1000 / 60)
+        if (minutes < 1) {
+            return 'just now'
+        }
         return `${minutes} minutes ago`
     }
     return `${hours} hours ago`
 }
 
-export { formatCommitData, formatCommitDate, formatCommitSha }
+/**
+ * Format message to desired number of characters with ellipsis.
+ *
+ * @param {string} message - The commit message.
+ * @param {number} [cutoff] - The number of characters to cut off at.
+ * @returns {string}
+ */
+const formatCommitMessage = (message, cutoff = 270) => message?.length > cutoff ? `${ message.substring(0, cutoff) }...` : message
+
+
+export { formatCommitData, formatCommitDate, formatCommitSha, formatCommitMessage }

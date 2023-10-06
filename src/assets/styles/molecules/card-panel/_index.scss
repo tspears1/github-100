@@ -27,13 +27,13 @@
     inline-size: min(100%, 50vi);
     display: grid;
     gap: var(--card-padding-block);
-    grid-template-rows: max-content 1fr max-content;
+    grid-template-rows: repeat(4, max-content) minmax(0, 1fr) max-content;
     overflow: hidden;
     padding-block: var(--card-padding-block);
     padding-inline: var(--card-padding-inline);
     position: relative;
 
-    &__header {
+    &__banner {
         --_header-gradient: var(--gradient-1);
 
         aspect-ratio: var(--ratio-ultrawide);
@@ -98,11 +98,6 @@
         }
     }
 
-    &__body {
-        align-content: start;
-        display: grid;
-    }
-
     &__title {
         font-family: var(--font-sans);
         font-size: var(--card-font-size-title);
@@ -110,21 +105,6 @@
         letter-spacing: var(--font-letterspacing-2);
         max-inline-size: none;
         text-align: start;
-    }
-
-    &__title,
-    &__description {
-        padding-block-end: var(--card-text-spacing);
-
-        &::after {
-            background: hsl(var(--surface-3-hsl) / 0.15);
-            block-size: 0.5rem;
-            border-radius: var(--radius-2);
-            content: '';
-            display: block;
-            inline-size: 100%;
-            margin-block-start: var(--card-text-spacing);
-        }
     }
 
     &__author {
@@ -138,8 +118,19 @@
     }
 
     &__description {
-        display: block;
+        display: grid;
+        gap: var(--card-text-spacing);
         font-size: var(--card-font-size-description);
+
+        &::before,
+        &::after {
+            background: hsl(var(--surface-3-hsl) / 0.15);
+            block-size: 0.5rem;
+            border-radius: var(--radius-2);
+            content: '';
+            display: block;
+            inline-size: 100%;
+        }
     }
 
     &__button {
@@ -156,6 +147,7 @@
 
     &__footer {
         align-items: center;
+        background: var(--card-background-color);
         display: grid;
         gap: var(--size-fluid-1);
         grid-template-columns: auto max-content;
@@ -163,7 +155,7 @@
     }
 
     &__ranking {
-        color: var(--card-ranking-color);
+        color: var(--brand);
         font-family: var(--font-pixel);
         font-size: var(--card-font-size-ranking);
         opacity: var(--card-ranking-opacity);
@@ -172,43 +164,36 @@
             opacity var(--duration-fast) var(--ease-out-3);
     }
 
-    &__commits {
+    &__actions {
+        display: flex;
+        gap: var(--size-fluid-1);
+        justify-content: center;
+    }
 
+    &__commits {
+        block-size: 100%;
+        overflow: auto;
+        padding-inline-end: var(--size-4);
+    }
+
+    &__commits-wrapper {
+        overflow: auto;
     }
 
     &__commits-title {
+        font-family: var(--font-mono);
+        font-size: var(--font-size-fluid-1);
+        letter-spacing: var(--font-letterspacing-3);
+        line-height: var(--font-lineheight-1);
 
+        span {
+            font-family: var(--font-sans);
+            font-size: 0.75em;
+        }
     }
 
     &__commits-list {
-
-    }
-
-    &__commits-item {
-
-    }
-
-    &__commits-item-sha {
-
-    }
-
-    &__commits-item-message {
-
-    }
-
-    &__commits-item-date {
-
-    }
-
-    &__commits-item-author {
-
-    }
-
-    &__commits-item-avatar {
-
-    }
-
-    &__commits-item-link {
-
+        display: grid;
+        gap: var(--size-fluid-2);
     }
 }

@@ -1,0 +1,101 @@
+.commit {
+    border: var(--border-size-1) solid var(--surface-3);
+    border-radius: var(--radius-2);
+    container-name: commit;
+    container-type: inline-style;
+    display: grid;
+    gap: var(--size-fluid-3);
+    max-inline-size: none;
+    padding-block: var(--size-fluid-1);
+    padding-inline: var(--size-fluid-1);
+
+    &__header {
+        align-items: center;
+        display: flex;
+        gap: var(--size-2);
+        justify-content: space-between;
+    }
+
+    &__message {
+        color: var(--text-1);
+        font-size: var(--font-size-fluid-0);
+        font-weight: var(--font-weight-3);
+        letter-spacing: var(--font-letterspacing-1);
+        line-height: var(--font-lineheight-1);
+    }
+
+    &__meta,
+    &__author {
+        align-items: center;
+        display: grid;
+        gap: var(--size-2);
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        justify-content: start;
+    }
+
+    &__avatar {
+        aspect-ratio: var(--ratio-square);
+        block-size: var(--size-5);
+        border-radius: var(--radius-round);
+        border: var(--border-size-2) solid var(--surface-4);
+
+        img {
+            border-radius: var(--radius-round);
+        }
+    }
+
+    &__author-name {
+        color: var(--text-1);
+        font-family: var(--font-mono);
+        font-size: var(--font-size-fluid-0);
+        font-weight: var(--font-weight-3);
+        letter-spacing: var(--font-letterspacing-3);
+        line-height: var(--font-lineheight-0);
+    }
+
+    &__date {
+        color: var(--text-2);
+        font-size: max(0.7vi, 0.5rem);
+        font-weight: var(--font-weight-3);
+        letter-spacing: var(--font-letterspacing-3);
+        line-height: var(--font-lineheight-00);
+    }
+
+    &__footer {
+        align-items: end;
+        display: flex;
+        gap: var(--size-2);
+        justify-content: space-between;
+    }
+
+    &__sha {
+        background: var(--surface-1);
+        border-radius: var(--radius-2);
+        color: var(--text-2);
+        display: inline-block;
+        font-size: var(--font-size-fluid-0);
+        font-weight: var(--font-weight-3);
+        letter-spacing: var(--font-letterspacing-4);
+        line-height: var(--font-lineheight-0);
+        padding-block: var(--size-2);
+        padding-inline: var(--size-3);
+    }
+
+
+    &__link {
+        --button-padding-block: var(--size-2);
+        --button-padding-inline: var(--size-2);
+        aspect-ratio: var(--ratio-square);
+        display: grid;
+        place-items: center;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        &:is(.material-symbols-rounded) {
+            font-size: 1rem !important;
+        }
+    }
+}

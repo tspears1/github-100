@@ -2,7 +2,7 @@
 // Import fonts from [Google](https://fonts.google.com/).
 @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;500;700&family=Koulen&family=Pixelify+Sans:wght@500&display=swap');
 
-@layer open-props, base, utils, components;
+@layer open-props, base, utils, vendors, components;
 
 // Import [open-props](https://open-props.style/) properties and normalize.
 @layer open-props {
@@ -12,12 +12,16 @@
     @import "open-props/colors-hsl";
 }
 
+@layer base {
+    @include meta.load-css('base');
+}
+
 @layer utils {
     @include meta.load-css('utils');
 }
 
-@layer base {
-    @include meta.load-css('base');
+@layer vendors {
+    @include meta.load-css('vendors');
 }
 
 @layer components {

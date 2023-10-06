@@ -13,7 +13,7 @@ const CardGrid = () => {
     const { repos, selectedId } = useRepoData()
 
     // Build empty cards for skeleton loading.
-    const skeletons = [...Array(19).keys()].map((index) => <CardSkeleton key={ index } index={ index }  />)
+    const skeletons = [...Array(12).keys()].map((index) => <CardSkeleton key={ index } index={ index }  />)
 
     // Build cards from repos.
     const cards = repos?.map((repo, index) => <Card content={ repo } key={ repo.id ?? index } index={ index } />)
