@@ -5,6 +5,11 @@
     background: transparent;
     border-radius: var(--radius-4);
     border: var(--border-size-1) solid var(--surface-3);
+    right: -0.75rem;
+
+    @media (min-width: 50rem) {
+        right: 0;
+    }
 
     :where(:not(.simplebar-active)) {
         display: none;

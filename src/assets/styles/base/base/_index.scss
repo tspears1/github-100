@@ -1,6 +1,11 @@
 :where(body) {
+    --base-padding-inline: var(--size-fluid-3);
     max-inline-size: 100%;
     position: relative;
+
+    @media (min-width: 32rem) {
+        --base-padding-inline: var(--size-fluid-4);
+    }
 }
 
 :where(ul, ol)[class] {

@@ -15,6 +15,7 @@
     &__grid {
         display: grid;
         padding-block: var(--size-fluid-2);
+        padding-inline: var(--base-padding-inline);
         place-items: center;
     }
 }

@@ -10,7 +10,7 @@
         gap: var(--size-fluid-4);
         grid-template-columns: repeat(var(--card-grid-columns), 1fr);
         padding-block: var(--size-fluid-4);
-        padding-inline: var(--size-fluid-4);
+        padding-inline: var(--base-padding-inline);
 
         // 800px ---------------------------------- */
         @container root (min-width: 50rem) {

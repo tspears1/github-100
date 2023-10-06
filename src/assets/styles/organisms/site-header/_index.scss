@@ -18,7 +18,7 @@
         grid-template-columns: 1fr max-content;
         justify-content: space-between;
         padding-block: var(--size-fluid-2);
-        padding-inline: var(--size-fluid-4);
+        padding-inline: var(--base-padding-inline);
         position: relative;
         z-index: var(--layer-1);
     }

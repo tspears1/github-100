@@ -2,7 +2,7 @@
     border: var(--border-size-1) solid var(--surface-3);
     border-radius: var(--radius-2);
     container-name: commit;
-    container-type: inline-style;
+    container-type: inline-size;
     display: grid;
     gap: var(--size-fluid-3);
     max-inline-size: none;
@@ -18,14 +18,14 @@
 
     &__message {
         color: var(--text-1);
-        font-size: var(--font-size-fluid-0);
+        font-size: max(var(--font-size-fluid-0), 0.875rem);
         font-weight: var(--font-weight-3);
         letter-spacing: var(--font-letterspacing-1);
-        line-height: var(--font-lineheight-1);
+        line-height: var(--font-lineheight-2);
+        word-break: break-word;
     }
 
-    &__meta,
-    &__author {
+    &__meta {
         align-items: center;
         display: grid;
         gap: var(--size-2);
@@ -34,9 +34,22 @@
         justify-content: start;
     }
 
+    &__meta-wrapper {
+        align-items: center;
+        display: grid;
+        grid-auto-flow: row;
+        grid-auto-columns: max-content;
+        grid-auto-rows: max-content;
+        gap: var(--size-1) var(--size-2);
+
+        @container commit (min-width: 31.25rem) {
+            grid-auto-flow: column;
+        }
+    }
+
     &__avatar {
         aspect-ratio: var(--ratio-square);
-        block-size: var(--size-5);
+        block-size: var(--size-6);
         border-radius: var(--radius-round);
         border: var(--border-size-2) solid var(--surface-4);
 
@@ -45,10 +58,10 @@
         }
     }
 
-    &__author-name {
+    &__author {
         color: var(--text-1);
         font-family: var(--font-mono);
-        font-size: var(--font-size-fluid-0);
+        font-size: max(var(--font-size-fluid-0), 0.875rem);
         font-weight: var(--font-weight-3);
         letter-spacing: var(--font-letterspacing-3);
         line-height: var(--font-lineheight-0);
@@ -56,10 +69,18 @@
 
     &__date {
         color: var(--text-2);
-        font-size: max(0.7vi, 0.5rem);
+        font-size: max(0.7vi, 0.75rem);
         font-weight: var(--font-weight-3);
         letter-spacing: var(--font-letterspacing-3);
         line-height: var(--font-lineheight-00);
+
+        span {
+            display: none;
+
+            @container commit (min-width: 31.25rem) {
+                display: inline;
+            }
+        }
     }
 
     &__footer {
@@ -87,11 +108,17 @@
         --button-padding-block: var(--size-2);
         --button-padding-inline: var(--size-2);
         aspect-ratio: var(--ratio-square);
-        display: grid;
+        display: none;
         place-items: center;
 
-        &:hover {
-            text-decoration: none;
+        @container commit (min-width: 31.25rem) {
+            display: grid;
+        }
+
+        &::after {
+            content: '';
+            inset: 0;
+            position: absolute;
         }
 
         &:is(.material-symbols-rounded) {

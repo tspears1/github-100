@@ -4,7 +4,7 @@
     --_button-border-width:             var(--button-border-width, var(--border-size-1));
     --_button-highlight-color:          var(--button-highlight-color, hsl(var(--text-1-hsl) / 0.1));
     --_button-highlight-size:           0;
-    --_button-padding-block:            var(--button-padding-block, var(--size-fluid-1));
+    --_button-padding-block:            var(--button-padding-block, 0);
     --_button-padding-inline:           var(--button-padding-inline, var(--size-fluid-1));
     --_button-text-color:               var(--button-text-color, var(--text-1));
 
@@ -19,7 +19,7 @@
     margin: 0;
     padding-block: var(--_button-padding-block);
     padding-inline: var(--_button-padding-inline);
-    place-items: center;
+    place-content: center;
 
     @media (prefers-reduced-motion: no-preference) {
         transition: box-shadow var(--duration-fast) var(--ease-out-2);

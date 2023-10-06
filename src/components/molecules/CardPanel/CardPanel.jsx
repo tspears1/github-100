@@ -16,6 +16,8 @@ const CardPanel = ({ selectedId }) => {
 
     const resetSelectedId = () => setSelectedId(null)
 
+    const preventClose = (e) => e.stopPropagation()
+
     useEffect(() => {
         if (selectedId) {
             const _currentRepo = repos.find(repo => repo.id === selectedId)
@@ -60,6 +62,7 @@ const CardPanel = ({ selectedId }) => {
             <motion.article
                 className="card-panel"
                 whileInView='show'
+                onClick={preventClose}
             >
                 <div className="card-panel__banner">
                     <div className="card-panel__eyebrow">
@@ -82,7 +85,7 @@ const CardPanel = ({ selectedId }) => {
                 <h3 className="card-panel__commits-title">
                     Recent Commits { commits?.length > 0 && (<span>{`[ ${commits.length} ]`}</span>) }
                 </h3>
-                <SimpleBar forceVisible='y' autoHide={false} className={ commits?.length > 0 && 'simplebar-active'}>
+                <SimpleBar forceVisible='y' autoHide={false} className={ commits?.length > 0 ? 'simplebar-active' : ''}>
                     <div className="card-panel__commits">
                         <ul className="card-panel__commits-list">
                             {commits?.length > 0 &&
@@ -90,20 +93,20 @@ const CardPanel = ({ selectedId }) => {
                                     <li className="commit" key={commit.sha}>
                                         <div className="commit__header">
                                             <div className="commit__meta">
-                                                <div className="commit__author">
-                                                    {commit.avatar && (
-                                                        <div className="commit__avatar">
-                                                            <img className="lazyload" src={commit.avatar} alt={commit.author} />
-                                                        </div>
-                                                    )}
-                                                    <div className="commit__author-name">{commit.author}</div>
+                                                {commit.avatar && (
+                                                    <div className="commit__avatar">
+                                                        <img className="lazyload" src={commit.avatar} alt={commit.author} />
+                                                    </div>
+                                                )}
+                                                <div className="commit__meta-wrapper">
+                                                    <div className="commit__author">{commit.author}</div>
+                                                    <div className="commit__date"><span>committed </span>{commit.hours}</div>
                                                 </div>
-                                                <div className="commit__date">committed {commit.hours}</div>
                                             </div>
                                             <div className="commit__meta">
                                                 <div className="commit__sha">{commit.shortSha}</div>
                                                 <a className="commit__link button button--outline" href={commit.url} target='_blank'>
-                                                    <span className="sr-only">View Commit</span>
+                                                    <span className="sr-only">View Commit {commit.shortSha} on Github</span>
                                                     <span className="card-panel__commits-link-icon material-symbols-rounded">code</span>
                                                 </a>
                                             </div>

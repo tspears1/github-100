@@ -3,16 +3,18 @@
 //==========================================================================
 
 .card-panel {
-    --card-avatar-size: 8vi;
+    --card-avatar-size: max(8vi, 6rem);
     --card-background-color: var(--surface-2);
+    --card-block-size: 100%;
     --card-box-shadow: var(--shadow-3);
-    --card-font-size-author: 1.05vi;
-    --card-font-size-description: 1.25vi;
-    --card-font-size-eyebrow: 1.125vi;
-    --card-font-size-ranking: 3vi;
-    --card-font-size-title: 2.8vi;
+    --card-font-size-author: max(1.05vi, 1rem);
+    --card-font-size-description: max(1.25vi, 1.125rem);
+    --card-font-size-eyebrow: max(1.125vi, 0.75rem);
+    --card-font-size-ranking: max(3vi, 2rem);
+    --card-font-size-title: max(2.8vi, 1.5rem);
     --card-header-pseudo-opacity: 0;
-    --card-icon-size: 1.4vi;
+    --card-icon-size: max(1.4vi, 1.75rem);
+    --card-inline-size: 100%;
     --card-padding-block: var(--size-3);
     --card-padding-inline: var(--size-3);
     --card-ranking-color: var(--surface-4);
@@ -23,8 +25,8 @@
     background: var(--card-background-color);
     border-radius: var(--radius-3);
     box-shadow: var(--card-box-shadow);
-    block-size: max(100%, 80vb);
-    inline-size: min(100%, 50vi);
+    block-size: var(--card-block-size);
+    inline-size: var(--card-inline-size);
     display: grid;
     gap: var(--card-padding-block);
     grid-template-rows: repeat(4, max-content) minmax(0, 1fr) max-content;
@@ -32,6 +34,11 @@
     padding-block: var(--card-padding-block);
     padding-inline: var(--card-padding-inline);
     position: relative;
+
+    @media (min-width: 50rem) {
+        --card-block-size: max(100%, 80vb);
+        --card-inline-size: min(100%, 50vi) clamp();
+    }
 
     &__banner {
         --_header-gradient: var(--gradient-1);
@@ -182,7 +189,7 @@
 
     &__commits-title {
         font-family: var(--font-mono);
-        font-size: var(--font-size-fluid-1);
+        font-size: max(var(--font-size-fluid-1), 1.25rem);
         letter-spacing: var(--font-letterspacing-3);
         line-height: var(--font-lineheight-1);
 
