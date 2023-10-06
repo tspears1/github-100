@@ -93,6 +93,7 @@
         border-end-end-radius: 0;
         border: calc(var(--card-avatar-size) * 0.12) solid var(--card-background-color);
         block-size: var(--card-avatar-size);
+        inline-size: var(--card-avatar-size);
         inset: auto calc(var(--card-padding-block) * -1) calc(var(--card-padding-inline) * -1) auto;
         place-self: end;
         position: absolute;
@@ -180,7 +181,11 @@
     &__commits {
         block-size: 100%;
         overflow: auto;
-        padding-inline-end: var(--size-4);
+        padding-inline-end: var(--size-2);
+
+        @container commit (min-width: 31.25rem) {
+            padding-inline-end: var(--size-4);
+        }
     }
 
     &__commits-wrapper {

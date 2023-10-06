@@ -105,14 +105,17 @@
 
 
     &__link {
-        --button-padding-block: var(--size-2);
-        --button-padding-inline: var(--size-2);
+        --button-padding-block: var(--size-1);
+        --button-padding-inline: var(--size-1);
+        --commit-link-font-size: 1rem;
         aspect-ratio: var(--ratio-square);
-        display: none;
+        display: grid;
         place-items: center;
 
         @container commit (min-width: 31.25rem) {
-            display: grid;
+            --button-padding-block: var(--size-2);
+            --button-padding-inline: var(--size-2);
+            --commit-link-font-size: 1.125rem;
         }
 
         &::after {
@@ -121,8 +124,8 @@
             position: absolute;
         }
 
-        &:is(.material-symbols-rounded) {
-            font-size: 1rem !important;
+        :is(.material-symbols-rounded) {
+            font-size: var(--commit-link-font-size) !important;
         }
     }
 }
