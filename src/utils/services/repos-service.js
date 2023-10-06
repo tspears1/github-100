@@ -1,5 +1,5 @@
 import { Octokit } from 'octokit'
-import { getAuthToken } from '@utils/getters/getAuthToken.js'
+import { getAuthToken } from '@utils/services/auth-token-service.js'
 import { formatRepoData } from '@utils/formatters/repo-formatter.js'
 import '@types/typedef'
 

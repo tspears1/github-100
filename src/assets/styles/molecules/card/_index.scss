@@ -6,6 +6,7 @@
 
 /* hover & focus state ----------------------------------------------------- */
 @mixin card-action-state {
+    --card-avatar-scale: 1;
     --card-box-shadow: var(--shadow-4);
     --card-header-pseudo-opacity: 1;
     --card-ranking-color: var(--brand);
@@ -22,6 +23,7 @@
 /* .card ----------------------------------------------------- */
 .card {
     --card-avatar-size: calc(var(--size-fluid-6) * 0.9);
+    --card-avatar-scale: 1.2;
     --card-background-color: var(--surface-2);
     --card-box-shadow: var(--shadow-3);
     --card-font-size-author: 0.875rem;
@@ -151,12 +153,13 @@
         aspect-ratio: var(--ratio-square);
         background: var(--card-background-color);
         border-radius: var(--radius-round);
-        border-end-end-radius: 0;
+        //border-end-end-radius: 0;
         border: calc(var(--card-avatar-size) * 0.12) solid var(--card-background-color);
         block-size: var(--card-avatar-size);
         inline-size: var(--card-avatar-size);
         inset: auto calc(var(--card-padding-block) * -1) calc(var(--card-padding-inline) * -1) auto;
         place-self: end;
+        overflow: hidden;
         position: absolute;
 
         img {
@@ -164,6 +167,10 @@
             border-radius: var(--radius-round);
             inline-size: 100%;
             object-fit: cover;
+            transition:
+                opacity var(--duration-moderate) var(--ease-out-1),
+                scale var(--duration-fast) var(--ease-out-3);
+            scale: var(--card-avatar-scale);
         }
     }
 

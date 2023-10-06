@@ -6,13 +6,11 @@ import FooterBar from "@components/organisms/FooterBar/FooterBar.jsx"
 const App = () => {
 
   return (
-    <>
-      <ContextProviders>
-        <Header />
-        <CardGrid />
-        <FooterBar />
-      </ContextProviders>
-    </>
+    <ContextProviders>
+      <Header />
+      <CardGrid />
+      <FooterBar />
+    </ContextProviders>
   )
 }
 

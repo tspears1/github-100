@@ -1,5 +1,5 @@
 import { Octokit } from 'octokit'
-import { getAuthToken } from '@utils/getters/getAuthToken'
+import { getAuthToken } from '@utils/services/auth-token-service'
 import { formatCommitData } from '@utils/formatters/commit-formatter'
 import '@types/typedef'
 
@@ -12,10 +12,10 @@ import '@types/typedef'
  */
 const getCommits = (repoFullName, {
     deadline = 1440,
-    sort= 'author-date',
-    order= 'desc',
-    per_page= 100,
-    page= 1,
+    sort = 'author-date',
+    order = 'desc',
+    per_page = 100,
+    page = 1,
 } = {}) => {
 
     // If there is no repoFullName, return.
