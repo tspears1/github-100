@@ -1,17 +1,21 @@
 .site-header {
     background: linear-gradient(180deg, hsl(var(--surface-1-hsl) / 0.9) 10%, transparent);
     inset-block-start: 0;
+    max-inline-size: 100%;
+    overflow: hidden;
     position: sticky;
     z-index: var(--layer-4);
 
     &__grid {
+        align-items: center;
         background-color: transparent;
         background-image: radial-gradient( rgba(0,0,0,0) 1px, var(--surface-2) 1px );
         background-repeat: repeat;
         background-size: 4px 4px;
         backdrop-filter: brightness(100%) blur(4px);
-        display: flex;
+        display: grid;
         gap: var(--size-fluid-4);
+        grid-template-columns: 1fr max-content;
         justify-content: space-between;
         padding-block: var(--size-fluid-2);
         padding-inline: var(--size-fluid-4);

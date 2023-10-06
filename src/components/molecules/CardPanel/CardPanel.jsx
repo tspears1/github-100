@@ -82,7 +82,7 @@ const CardPanel = ({ selectedId }) => {
                 <h3 className="card-panel__commits-title">
                     Recent Commits { commits?.length > 0 && (<span>{`[ ${commits.length} ]`}</span>) }
                 </h3>
-                <SimpleBar forceVisible={commits?.length > 0 ? 'y' : false } autoHide={false} className={ commits?.length > 0 && 'simplebar-active'}>
+                <SimpleBar forceVisible='y' autoHide={false} className={ commits?.length > 0 && 'simplebar-active'}>
                     <div className="card-panel__commits">
                         <ul className="card-panel__commits-list">
                             {commits?.length > 0 &&

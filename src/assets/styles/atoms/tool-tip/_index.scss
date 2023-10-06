@@ -41,12 +41,16 @@
 }
 
 :has( > :where(tool-tip, .tool-tip)) {
-    @include css-has-transition();
+    @media (any-hover: hover) {
+        @include css-has-transition();
+    }
 }
 
 @supports not (selector(:has(*))) {
     .has--tooltip {
-        @include css-has-transition();
+        @media (any-hover: hover) {
+            @include css-has-transition();
+        }
     }
 }
 
@@ -218,5 +222,9 @@
         ) {
             --_tooltip-x: var(--_tooltip-motion-offset);
         }
+    }
+
+    @media (any-hover: none) {
+        display: none;
     }
 }

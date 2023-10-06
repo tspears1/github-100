@@ -1,11 +1,13 @@
 .site-utility {
 
     &__list {
+        align-content: center;
+        align-items: center;
         display: grid;
-        gap: var(--size-fluid-2);
+        gap: var(--size-fluid-1);
         grid-auto-columns: max-content;
         grid-auto-flow: column;
-        grid-template-columns: 3rem;
+        justify-content: end;
     }
 
     &__item {
@@ -17,8 +19,13 @@
     }
 
     &__button {
+        --button-padding-block: 0;
+        --button-padding-inline: 0;
+        --utility-button-size: clamp(2.625rem, 4vi, 3.5rem);
         aspect-ratio: 1;
+        block-size: var(--utility-button-size);
         display: grid;
+        inline-size: var(--utility-button-size);
         place-items: center;
 
         &:is(a) {

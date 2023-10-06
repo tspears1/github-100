@@ -6,7 +6,9 @@
         linear-gradient(0deg, hsl(var(--surface-1-hsl) / 0.5), transparent);
     background-repeat: repeat, no-repeat;
     background-size: 4px 4px, cover;
+    max-inline-size: 100%;
     inset: 0;
+    overflow: hidden;
     position: sticky;
     z-index: var(--layer-4);
 
