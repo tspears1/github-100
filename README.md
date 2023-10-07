@@ -11,3 +11,11 @@
  - click on card to expand into "page" view with list of commits made in last 24 hours (commit author, date, id, message)
  - make sure to add tests
  - Radash?
+
+## TODO:
+- Write Read me
+- Clean up and document
+- Finish types
+- House cleaning
+- Write Jest Tests
+-

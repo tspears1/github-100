@@ -37,13 +37,13 @@
 
     @media (min-width: 50rem) {
         --card-block-size: max(100%, 80vb);
-        --card-inline-size: min(100%, 50vi) clamp();
+        --card-inline-size: min(100%, 75rem);
     }
 
     &__banner {
         --_header-gradient: var(--gradient-1);
 
-        aspect-ratio: var(--ratio-ultrawide);
+        aspect-ratio: calc(var(--ratio-ultrawide) * 1.25);
         background-image: var(--_header-gradient);
         background-position: center;
         background-repeat: no-repeat;
@@ -130,7 +130,6 @@
         gap: var(--card-text-spacing);
         font-size: var(--card-font-size-description);
 
-        &::before,
         &::after {
             background: hsl(var(--surface-3-hsl) / 0.15);
             block-size: 0.5rem;
@@ -183,7 +182,7 @@
         overflow: auto;
         padding-inline-end: var(--size-2);
 
-        @container commit (min-width: 31.25rem) {
+        @media (min-width: 31.25rem) {
             padding-inline-end: var(--size-4);
         }
     }

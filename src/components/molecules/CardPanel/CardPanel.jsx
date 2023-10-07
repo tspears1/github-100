@@ -8,13 +8,16 @@ import '@types/typedef'
 import SimpleBar from 'simplebar-react'
 
 const CardPanel = ({ selectedId }) => {
-    // Lock Body Scroll on mount.
-    useScrollLock()
+    /** @type {Function} */
+    const setLocked = useScrollLock()
 
     const { repos, setSelectedId } = useRepoData()
     const [ currentRepo, setCurrentRepo ] = useState(null)
 
-    const resetSelectedId = () => setSelectedId(null)
+    const resetSelectedId = () => {
+        setSelectedId(null)
+        setLocked(false)
+    }
 
     const preventClose = (e) => e.stopPropagation()
 
@@ -22,6 +25,7 @@ const CardPanel = ({ selectedId }) => {
         if (selectedId) {
             const _currentRepo = repos.find(repo => repo.id === selectedId)
             setCurrentRepo(_currentRepo)
+            setLocked(true)
         }
     }, [selectedId])
 

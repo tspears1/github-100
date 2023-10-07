@@ -1,16 +1,22 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 /**
- * Use this hook to lock the scroll position of the body when the component mounts.
+ * Use this hook toggle locking the scroll position of the body.
  *
- * @returns {void}
+ * @returns {function} - A function to lock the scroll position of the body.
  */
 const useScrollLock = () => {
+    const [locked, setLocked] = useState(false)
+
     useEffect(() => {
-        const originalStyle = window.getComputedStyle(document.body).overflow
-        document.body.style.overflow = 'hidden'
-        return () => (document.body.style.overflow = originalStyle)
-    }, [])
+        if (locked) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = null
+        }
+    }, [locked])
+
+    return setLocked
 }
 
 export { useScrollLock }
