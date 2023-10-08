@@ -161,8 +161,6 @@ I also wanted to keep the document as readable as possible so I opted to use the
 - [ ]  Optimize avatar images and serve in webp format.
 - [ ]  Reset focus to selected card when panel is closed.
 
-
-
 ## TODO:
 - [x]  Clean up and document
 - [x]  Finish types
