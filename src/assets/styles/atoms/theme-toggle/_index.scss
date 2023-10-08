@@ -1,7 +1,13 @@
+//======================================================================
+//====[ @component ThemeToggle ]========================================
+//====[ based on https://web.dev/building-a-theme-switch-component/ ]===
+//======================================================================
+
+/* .theme-toggle ----------------------------------------------------- */
 .theme-toggle {
-    --size: 1.5rem;
     --icon-fill: hsl(var(--text-1-hsl) / 0.5);
     --icon-fill-hover: var(--text-2);
+    --size: 1.5rem;
 
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
@@ -16,6 +22,7 @@
     }
 }
 
+/* .theme-toggle__icon ------------------------------------------------ */
 .sun-and-moon {
     & > :is(.moon, .sun, .sun-beams) {
         transform-origin: center center;

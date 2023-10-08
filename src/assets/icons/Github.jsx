@@ -1,3 +1,8 @@
+/**
+ * Github icon
+ *
+ * @returns {JSX.Element}
+ */
 const GithubIcon = () => {
     return (
         <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true">

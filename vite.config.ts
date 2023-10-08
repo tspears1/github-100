@@ -1,8 +1,13 @@
+// Vite ========================================
 import { defineConfig } from 'vite'
+
+// Node ========================================
 import path from 'path'
+
+// Plugins ========================================
 import react from '@vitejs/plugin-react-swc'
 
-// https://vitejs.dev/config/
+// Config ========================================
 export default defineConfig({
   plugins: [react()],
   resolve: {

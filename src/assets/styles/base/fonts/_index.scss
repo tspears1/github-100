@@ -1,9 +1,15 @@
-// Koulen - 400 ( Regular )
-// Pixelify Sans - 500 ( Medium )
-// Jura - 300 ( Light ), 500 ( Medium ), 700 ( Bold )
+//================================================================
+//====[ Fonts ]===================================================
+//====[ from https://fonts.google.com/ ]==========================
+//================================================================
 
 :root {
+    // Jura - 300 ( Light ), 500 ( Medium ), 700 ( Bold )
     --font-sans: 'Jura', sans-serif;
+
+    // Koulen - 400 ( Regular )
     --font-mono: 'Koulen', monospace;
+
+    // Pixelify Sans - 500 ( Medium )
     --font-pixel: 'Pixelify Sans', sans-serif;
 }

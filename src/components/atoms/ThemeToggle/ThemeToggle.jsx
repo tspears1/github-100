@@ -1,11 +1,25 @@
+// React ===============================
 import { useEffect, useRef } from 'react'
 
+/**
+ * @component ThemeToggle
+ * @description A button component for toggling light & dark themes.
+ *
+ * @returns {JSX.Element}
+ */
 const ThemeToggle = () => {
+
+    // Variables -------------------------------
+
     /** @type {string} */
     const storageKey = 'theme-preference'
 
+    // States -------------------------------
+
     /** @type {'light' | 'dark'} */
     const theme = useRef('light')
+
+    // Handlers -------------------------------
 
     /**
      * Toggle current theme value and update preference
@@ -17,6 +31,8 @@ const ThemeToggle = () => {
 
         setPreference()
     }
+
+    // Methods -------------------------------
 
     /**
      * Get the current color preference
@@ -52,6 +68,7 @@ const ThemeToggle = () => {
         document.documentElement.setAttribute('color-scheme', theme.current)
     }
 
+    // Effects -------------------------------
     useEffect(() => {
         // set initial value
         theme.current = getColorPreference()
@@ -69,6 +86,7 @@ const ThemeToggle = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    // Render -------------------------------
     return (
         <button
             className='site-utility__button theme-toggle button button--outline'

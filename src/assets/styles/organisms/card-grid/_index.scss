@@ -1,3 +1,7 @@
+//==========================================================================
+//==[ @component CardGrid ]=================================================
+//==========================================================================
+
 .card-grid {
     container-name: root;
     container-type: inline-size;
@@ -12,22 +16,22 @@
         padding-block: var(--size-fluid-4);
         padding-inline: var(--base-padding-inline);
 
-        // 800px ---------------------------------- */
+        /* 800px ---------------------------------- */
         @container root (min-width: 50rem) {
             --card-grid-columns: 2;
         }
 
-        // 1200px ---------------------------------- */
+        /* 1200px ---------------------------------- */
         @container root (min-width: 75rem) {
             --card-grid-columns: 3;
         }
 
-        // 1760px ---------------------------------- */
+        /* 1760px ---------------------------------- */
         @container root (min-width: 110rem) {
             --card-grid-columns: 4;
         }
 
-        // 2240px ---------------------------------- */
+        /* 2240px ---------------------------------- */
         @container root (min-width: 140rem) {
             --card-grid-columns: 5;
         }

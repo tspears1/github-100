@@ -1,6 +1,12 @@
-import { useState, useEffect, createContext, useContext } from 'react'
+// React ===============================
+import React, { useState, useEffect, createContext, useContext } from 'react'
+
+// Utils ===============================
 import { getCommits } from '@utils/services/commits-service.js'
 import { getRepos } from '@utils/services/repos-service.js'
+
+// Types ===============================
+import '@types/typedef'
 
 // Create context for repo data.
 const RepoContext = createContext()
@@ -10,18 +16,22 @@ const RepoContext = createContext()
  *
  * @returns {Object} repos, setRepos, selectedId, setSelectedId
  */
-const useRepoData = () => useContext(RepoContext)
+const useRepoDataContext = () => useContext(RepoContext)
 
 /**
- * Repo data context provider.
+ * @component RepoContextProvider
+ * @description Provide repo data to the app.
+ * @param {React.Props} props
  *
- * @param {Object} props
- * @param {Object} props.children - React children.
- * @returns {Object} RepoContext.Provider
+ * @returns {JSX.Element}
  */
 const RepoContextProvider = ({ children }) => {
+
+    // State -----------------------------------------------
     const [repos, setRepos] = useState([])
     const [selectedId, setSelectedId] = useState(null)
+
+    // Effects ---------------------------------------------
 
     /**
      * Get repos on initial render.
@@ -29,15 +39,18 @@ const RepoContextProvider = ({ children }) => {
      * @returns {Promise<void>}
      */
     useEffect(() => {
+
         // If there are repos, return.
         if (repos.length) return
 
         // If there are no repos, get the repos.
         const fetchRepos = async () => {
+            /** @type {RepositoryData[]} */
             const _repos = await getRepos()
             setRepos(_repos)
         }
         fetchRepos()
+
     }, [repos])
 
     /**
@@ -72,6 +85,7 @@ const RepoContextProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedId])
 
+    // Render ----------------------------------------------
     return(
         <RepoContext.Provider value={{
             repos,
@@ -85,4 +99,4 @@ const RepoContextProvider = ({ children }) => {
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-export { RepoContextProvider, useRepoData }
+export { RepoContextProvider, useRepoDataContext }

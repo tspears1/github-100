@@ -1,6 +1,11 @@
+// Libraries ================================================================
 import { Octokit } from 'octokit'
+
+// Utils ====================================================================
 import { getAuthToken } from '@utils/services/auth-token-service'
 import { formatCommitData } from '@utils/formatters/commit-formatter'
+
+// Types ====================================================================
 import '@types/typedef'
 
 /**
@@ -21,12 +26,25 @@ const getCommits = (repoFullName, {
     // If there is no repoFullName, return.
     if (!repoFullName) return
 
+    // Get the GitHub personal access token.
+    /** @type {string} */
     const token = getAuthToken()
 
-    // Get the date string to search commits before based on the deadline.
-    const _timestamp = new Date()
-    _timestamp.setMinutes(_timestamp.getMinutes() - deadline)
-    const deadlineTimestamp = _timestamp.toISOString()
+    /**
+     * Get the date string to search commits before based on the deadline.
+     * @param {number} deadline  The number of minutes to search commits before.
+     *
+     * @return {string}
+     */
+    const getDeadlineDate = (deadline) => {
+        /** @type {Date} */
+        const _timestamp = new Date()
+        _timestamp.setMinutes(_timestamp.getMinutes() - deadline)
+
+        return _timestamp.toISOString()
+    }
+
+    const deadlineTimestamp = getDeadlineDate(deadline)
 
     // Create the query string.
     const query = `repo:${repoFullName} author-date:>${deadlineTimestamp}`

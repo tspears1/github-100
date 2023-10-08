@@ -1,25 +1,11 @@
-import { useState, useEffect, createContext, useContext } from 'react'
+// React ===============================
+import React, { useState, useEffect, createContext, useContext } from 'react'
+
+// Hooks ===============================
 import { useWindowSize } from '@hooks/useWindowSize.js'
 
-/**
- * @typedef {Object} ColumnBreakpoint
- * @property {number} min - Minimum window width.
- * @property {number} max - Maximum window width.
- * @property {number} columns - Number of columns.
- */
-
-/**
- * Column breakpoints.
- *
- * @type {ColumnBreakpoint[]}
- */
-const columnBreakpoints = [
-    { min: 0, max: 799, columns: 1 },
-    { min: 800, max: 1199, columns: 2 },
-    { min: 1200, max: 1759, columns: 3 },
-    { min: 1760, max: 2239, columns: 4 },
-    { min: 2240, max: 9999, columns: 5 }
-]
+// Types ===============================
+import '@types/typedef'
 
 // Create context for columns.
 const ColumnsContext = createContext()
@@ -29,28 +15,57 @@ const ColumnsContext = createContext()
  *
  * @returns {Object} columns, setColumns
  */
-const useColumns = () => useContext(ColumnsContext)
+const useColumnsContext = () => useContext(ColumnsContext)
 
 /**
- * Columns context provider.
- * Set the number of card columns that fit in the current window.
+ * @component ColumnsContextProvider.
+ * @descirption Set the number of card columns that fit in the current window.
+ * @param {React.Props} props
  *
- * @param {Object} props
- * @param {Object} props.children - React children.
- * @returns {Object} ColumnsContext.Provider
+ * @returns {JSX.Element}
  */
 const ColumnsContextProvider = ({ children }) => {
     const [columns, setColumns] = useState(1)
     const currentWindow = useWindowSize()
 
+    /**
+     * Column breakpoints.
+     *
+     * @type {ColumnBreakpoint[]}
+     */
+    const columnBreakpoints = [
+        { min: 0, max: 799, columns: 1 },
+        { min: 800, max: 1199, columns: 2 },
+        { min: 1200, max: 1759, columns: 3 },
+        { min: 1760, max: 2239, columns: 4 },
+        { min: 2240, max: 9999, columns: 5 }
+    ]
+
+    /**
+     * Get the current breakpoint.
+     *
+     * @param {ColumnBreakpoint[]} breakpoints - Array of breakpoints.
+     *
+     * @returns {ColumnBreakpoint} - The current breakpoint.
+     */
+    const getBreakpoint = (breakpoints) => {
+        // Find the breakpoint that matches the current window width.
+        return breakpoints.filter((breakpoint) => currentWindow.width > breakpoint.min && currentWindow.width < breakpoint.max)
+    }
+
+    // Effects ---------------------------------------------
     useEffect(() => {
-        const updateColumns = () => {
-            const breakpoint = columnBreakpoints.filter((breakpoint) => currentWindow.width > breakpoint.min && currentWindow.width < breakpoint.max)
-            setColumns(breakpoint[0]?.columns ?? 1)
-        }
-        updateColumns()
+
+        // Find the breakpoint that matches the current window width.
+        const breakpoint = getBreakpoint(columnBreakpoints)
+
+        // Set the number of columns.
+        setColumns(breakpoint[0]?.columns ?? 1)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentWindow.width])
 
+    // Render ----------------------------------------------
     return(
         <ColumnsContext.Provider value={{
             columns,
@@ -61,4 +76,5 @@ const ColumnsContextProvider = ({ children }) => {
     )
 }
 
-export { ColumnsContextProvider, useColumns }
+// eslint-disable-next-line react-refresh/only-export-components
+export { ColumnsContextProvider, useColumnsContext }

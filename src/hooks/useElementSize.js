@@ -1,10 +1,8 @@
+// React ========================================================================
 import { useState, useEffect } from "react"
 
-/**
- * @typedef {Object} ElementSize
- * @property {number} width - The width of the element.
- * @property {number} height - The height of the element.
- */
+// Types ========================================================================
+import '@types/typedef'
 
 /**
  * Use ResizeObserver to get the size of an element.
@@ -13,13 +11,17 @@ import { useState, useEffect } from "react"
  * @returns {ElementSize} - The size of the element.
  */
 const useElementSize = (elementRef) => {
+
     const [size, setSize] = useState({
         width: null,
         height: null,
     })
 
     useEffect(() => {
+
+        /** @type {ResizeObserver} */
         const resizeObserver = new ResizeObserver(([ entry ]) => {
+            /** @type {ElementSize} */
             const { width, height } = entry.contentRect
             setSize({ width, height })
         })
@@ -29,6 +31,8 @@ const useElementSize = (elementRef) => {
         return () => {
             resizeObserver.disconnect()
         }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return size

@@ -1,6 +1,11 @@
+// Libraries ================================================================
 import { Octokit } from 'octokit'
+
+// Utils ====================================================================
 import { getAuthToken } from '@utils/services/auth-token-service.js'
 import { formatRepoData } from '@utils/formatters/repo-formatter.js'
+
+// Types ====================================================================
 import '@types/typedef'
 
 /**
@@ -18,8 +23,11 @@ const getRepos = ({
     page= 1,
 } = {}) => {
 
+    // Get the GitHub personal access token.
+    /** @type {string} */
     const token = getAuthToken()
 
+    // Create the Octokit instance.
     const octokit = new Octokit({ auth: token })
 
     /**

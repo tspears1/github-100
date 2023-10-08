@@ -3,6 +3,12 @@ import ContextProviders from "@components/organisms/ContextProviders/ContextProv
 import CardGrid from "@components/organisms/CardGrid/CardGrid.jsx"
 import FooterBar from "@components/organisms/FooterBar/FooterBar.jsx"
 
+/**
+ * @component App
+ * @description The main component of the application.
+ *
+ * @returns {JSX.Element}
+ */
 const App = () => {
 
   return (

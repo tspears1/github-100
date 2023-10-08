@@ -10,19 +10,20 @@ const formatRepoData = (unfilteredData) => {
     if (!unfilteredData) return
 
     const filtered = unfilteredData?.items.map((item, index) => {
-        return {
-            index,
-            id: item.id,
-            name: item.name,
-            owner: item.owner.login,
-            stars: item.stargazers_count,
-            url: item.html_url,
-            topics: item.topics,
-            description: item.description,
-            avatar: item.owner.avatar_url,
-            fullname: item.full_name,
+        /** @type {RepositoryData} */
+        const data = {
+            avatar: item?.owner.avatar_url ?? '',
             commits: null,
+            description: item?.description ?? '',
+            fullname: item?.full_name ?? '',
+            id: item?.id ?? 0,
+            index,
+            name: item?.name ?? '',
+            owner: item?.owner?.login ?? '',
+            stars: item?.stargazers_count ?? 0,
+            url: item?.html_url ?? '',
         }
+        return data
     })
     return filtered
 }

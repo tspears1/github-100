@@ -1,23 +1,43 @@
+// React ===============================
 import { useState, useEffect } from 'react'
+
+// Context ===============================
+import { useRepoDataContext } from '@context/repo-data'
+import { useColumnsContext } from '@context/columns'
+
+// Motion ===============================
 import { motion, useInView, useAnimate } from 'framer-motion'
-import { useColumns } from '@context/columns'
-import { useRepoData } from '@context/repo-data'
+
+// Utils ===============================
 import { summarize, formatRank } from '@utils/formatters/card-formatter.js'
+
+// Types ===============================
 import '@types/typedef'
 
+/**
+ * @component Card
+ * @description A card component for displaying repository data.
+ * @param {CardProps} props
+ *
+ * @returns {JSX.Element}
+ */
 const Card = ({ content, index: sortIndex }) => {
 
-    const [locked, setLocked] = useState(false)
-
-    const { selectedId, setSelectedId } = useRepoData()
-    const { columns } = useColumns()
-
-    /** @type {RepositoryData} */
+    // Props -------------------------------
     const { id, name, description, owner, stars, avatar, index: cardIndex } = content
 
+    // States -------------------------------
+    const [locked, setLocked] = useState(false)
 
+    // Contexts -------------------------------
+    const { selectedId, setSelectedId } = useRepoDataContext()
+    const { columns } = useColumnsContext()
+
+    // Formatters -------------------------------
     const ranking = formatRank(cardIndex)
     const summary = summarize(description)
+
+    // Handlers -------------------------------
 
     /**
      * Set the selected ID in context on click.
@@ -26,11 +46,13 @@ const Card = ({ content, index: sortIndex }) => {
      */
     const handleClick = () => setSelectedId(id)
 
+    // Motion -------------------------------
     const [scope, animate] = useAnimate()
     const isInView = useInView(scope)
 
     useEffect(() => {
         if (!isInView) return
+
         if (selectedId) {
             setLocked(true)
             animate(scope.current, { opacity: 0.2, y: 0, scale: 0.9 }, {duration: 0.5, ease: 'anticipate' })
@@ -38,6 +60,8 @@ const Card = ({ content, index: sortIndex }) => {
             animate(scope.current, { opacity: 1, y: 0, scale: 1 }, {duration: 0.5, ease: 'anticipate' })
             setLocked(false)
         }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedId])
 
     /** @type {AnimationProps.variants} */
@@ -54,6 +78,7 @@ const Card = ({ content, index: sortIndex }) => {
         }
     }
 
+    // Render -------------------------------
     return (
         <motion.article
             className="card"

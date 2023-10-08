@@ -1,10 +1,16 @@
+//==========================================================================
+//==[ @component Card Skeleton ]============================================
+//==========================================================================
 
+/* @placeholder animation ------------------------------------------------- */
 %shimmer {
     animation: var(--animation-blink);
     animation-duration: var(--duration-grave);
     animation-delay: calc(var(--duration-quick) * var(--card-index));
     background: var(--placeholder-bg);
 }
+
+/* .card[data-skeleton] -------------------------------------------------- */
 .card[data-skeleton] {
     --placeholder-bg: hsl(var(--surface-3-hsl) / 0.25);
     pointer-events: none;

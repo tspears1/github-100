@@ -2,7 +2,7 @@
 
 ## Project Brainstorming
  - provider at root for data of 100 so it can be cached?
- - useRepoData() hook for use in cards and repo 'pages': name, url, star count, author, thumbnail, id
+ - useRepoDataContext() hook for use in cards and repo 'pages': name, url, star count, author, thumbnail, id
  - filters: search by title, sort by most to least(default) and reverse, sort alphabetically?
  - use framer motion, skeletons, suspense for movement
  - dark mode / light mode toggle - add theme provider

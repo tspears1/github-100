@@ -1,39 +1,77 @@
+// React ===============================
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { useRepoData } from '@context/repo-data'
-import { formatRank } from '@utils/formatters/card-formatter.js'
-import { useScrollLock } from '@hooks/useScrollLock.js'
-import '@types/typedef'
 
+// Context ===============================
+import { useRepoDataContext } from '@context/repo-data'
+
+// Components ===============================
 import SimpleBar from 'simplebar-react'
 
+// Hooks ===============================
+import { useScrollLock } from '@hooks/useScrollLock.js'
+
+// Motion ===============================
+import { motion } from 'framer-motion'
+
+// Utils ===============================
+import { formatRank } from '@utils/formatters/card-formatter.js'
+
+// Types ===============================
+import '@types/typedef'
+
+/**
+ * @component CardPanel
+ * @description A card panel component for displaying repository data.
+ * @param {CardPanelProps} props
+ *
+ * @returns {JSX.Element}
+ */
 const CardPanel = ({ selectedId }) => {
-    /** @type {Function} */
-    const setLocked = useScrollLock()
 
-    const { repos, setSelectedId } = useRepoData()
-    const [ currentRepo, setCurrentRepo ] = useState(null)
+    // Contexts -------------------------------
+    const { repos, setSelectedId } = useRepoDataContext()
 
-    const resetSelectedId = () => {
-        setSelectedId(null)
-        setLocked(false)
-    }
+    // States -------------------------------
+    const [currentRepo, setCurrentRepo] = useState(null)
 
-    const preventClose = (e) => e.stopPropagation()
-
+    // Get the current repo from context based on selected ID.
     useEffect(() => {
         if (selectedId) {
             const _currentRepo = repos.find(repo => repo.id === selectedId)
             setCurrentRepo(_currentRepo)
             setLocked(true)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedId])
 
     /** @type {RepositoryData} */
     const { name, description, owner, stars, avatar, index, commits, url } = currentRepo || {}
 
+    // Methods -------------------------------
+    const setLocked = useScrollLock()
+
+    /**
+     * Reset the selected ID in context.
+     *
+     * @returns {void}
+     */
+    const resetSelectedId = () => {
+        setSelectedId(null)
+        setLocked(false)
+    }
+
+    /**
+     * Prevent the card panel from closing when clicking inside.
+     *
+     * @param {React.MouseEvent} e
+     * @returns {void}
+     */
+    const preventClose = (e) => e.stopPropagation()
+
+    // Formatters -------------------------------
     const ranking = formatRank(index)
 
+    // Motion -------------------------------
     /** @type {AnimationProps.variants} */
     const motionVariants = {
         show: {
@@ -54,6 +92,7 @@ const CardPanel = ({ selectedId }) => {
         }
     }
 
+    // Render -------------------------------
     return (
         <motion.div
             className='screen'

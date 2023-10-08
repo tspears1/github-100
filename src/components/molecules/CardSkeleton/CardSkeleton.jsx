@@ -1,25 +1,41 @@
+// Context ===============================
+import { useColumnsContext } from '@context/columns'
+
+// Motion ===============================
 import { motion } from 'framer-motion'
-import { useColumns } from '@context/columns'
 
-const motionVariants = {
-    initial: {
-        opacity: 0,
-    },
-    animate: {
-        opacity: 0.6,
-    },
-    exit: {
-        opacity: 0,
-        y: 20,
-        scale: 0.8,
-    }
-}
+// Types ===============================
+import '@types/typedef'
 
+/**
+ * @component CardSkeleton
+ * @description A skeleton loader for the card component.
+ * @param {CardSkeletonProps} props
+ *
+ * @returns {JSX.Element}
+ */
 const CardSkeleton = ({ index }) => {
 
+    // Contexts -------------------------------
     // Get number of columns from context.
-    const { columns } = useColumns()
+    const { columns } = useColumnsContext()
 
+    // Motion -------------------------------
+    const motionVariants = {
+        initial: {
+            opacity: 0,
+        },
+        animate: {
+            opacity: 0.6,
+        },
+        exit: {
+            opacity: 0,
+            y: 20,
+            scale: 0.8,
+        }
+    }
+
+    // Render -------------------------------
     return (
         <motion.article
             className="card"

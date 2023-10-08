@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 /**
- * Use this hook toggle locking the scroll position of the body.
+ * Use this hook to toggle locking the scroll position of the body.
  *
  * @returns {function} - A function to lock the scroll position of the body.
  */

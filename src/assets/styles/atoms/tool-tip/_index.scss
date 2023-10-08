@@ -1,7 +1,13 @@
-// based on: https://web.dev/building-a-tooltip-component/
+//=================================================================
+//====[ Tool Tip ]=================================================
+//====[ based on https://web.dev/building-a-tooltip-component/ ]===
+//=================================================================
+
+//====[ NOTE ]======================================================
 // As of June 2023, the :has selector still lacks support from Firefox.
 // In order to support Firefox, we need to use the .has--tooltip class, applied by has-polyfill.js.
 
+/* @mixin for transition used during :hover & :focus-visible -------- */
 @mixin css-has-transition() {
     &:is(:hover, :active) > :where(tool-tip, .tool-tip),
     &:is(:focus-visible) > :where(tool-tip, .tool-tip):where(:not([tip-focus-within])),
@@ -54,6 +60,7 @@
     }
 }
 
+/* .tool-tip ------------------------------------------------------ */
 :where(tool-tip, .tool-tip) {
     --_tooltip-color-background:                    var(--tooltip-color-background, var(--surface-1));
     --_tooltip-color-text:                          var(--tooltip-color-text, var(--text-2));
