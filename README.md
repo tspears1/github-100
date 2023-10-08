@@ -140,6 +140,7 @@ This includes (but not limited to the following):
 - Light / Dark Mode Toggle
 - Focus Management
 - Keyboard Navigation
+- Skip Links
 - Screen Reader friendly labels and instructions
 - Reduced Motion support
 - One handed design patterns for mobile
@@ -148,7 +149,9 @@ This includes (but not limited to the following):
 Framer Motion was used to manage most of the motion on the site. I wanted the movement to be informative and provide visual feedback to the user. I also wanted it to create a delightful experience that would make the site feel more alive and fluid.
 
 ### Testing
-
+- Unit tests were written using Vitest specifically to test all formatters and services.
+- Axe was used to run an accessibility audit on the site to ensure that it was as accessible as possible.
+- Lighthouse was used to run a performance audit on the site to ensure that it was as performant as possible and met the Core Web Vitals standards.
 
 ### Typing
 JSDoc was used for typing with the aim of being as self-documenting as possible and create better IDE intellisense and type checking.
@@ -165,7 +168,9 @@ I also wanted to keep the document as readable as possible so I opted to use the
 - [x]  Finish types
 - [x]  House cleaning
 - [x]  Write Read me
-- [ ]  Write Jest Tests
+- [x]  Write Jest Tests
 - [ ]  Eyebrow Corners
 - [ ]  Loading bar / animate loading text
 - [x]  Lighthouse / Core Web Vitals Test
+- [ ]  Axe Accessibility Test
+- [ ]  Add Skip Links
