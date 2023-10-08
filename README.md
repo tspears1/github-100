@@ -1,26 +1,24 @@
-# [Coding Exercise] GitHub 100
+# GitHub 100
 
-A Candid Project - Using React build a ​single-page web app​ that uses the Github REST API to display a list of the top 100 most starred Github repositories; including a list of the commits made in the last 24 hours.
+Coding Exercise - Using React build a ​single-page web app​ that uses the Github REST API to display a list of the top 100 most starred Github repositories; including a list of the commits made in the last 24 hours.
 
 ## Table of Contents
 
-- [\[Coding Exercise\] GitHub 100](#coding-exercise-github-100)
-  - [Table of Contents](#table-of-contents)
-  - [Run Locally](#run-locally)
-  - [Environment Variables](#environment-variables)
-  - [Tech Stack](#tech-stack)
-  - [Additional Libraries](#additional-libraries)
-  - [Process \& Goals](#process--goals)
-    - [Structure](#structure)
-    - [React / Javascript](#react--javascript)
-    - [Styles](#styles)
-    - [UX \& Design](#ux--design)
-    - [Accessibility (A11y)](#accessibility-a11y)
-    - [Motion](#motion)
-    - [Testing](#testing)
-    - [Typing](#typing)
-  - [Roadmap](#roadmap)
-  - [TODO:](#todo)
+- [Run Locally](#run-locally)
+- [Environment Variables](#environment-variables)
+- [Tech Stack](#tech-stack)
+- [Additional Libraries](#additional-libraries)
+- [Process \& Goals](#process--goals)
+  - [Structure](#structure)
+    - [Folder Structure](#folder-structure)
+  - [React / Javascript](#react--javascript)
+  - [Styles](#styles)
+  - [UX \& Design](#ux--design)
+  - [Accessibility (A11y)](#accessibility-a11y)
+  - [Motion](#motion)
+  - [Testing](#testing)
+  - [Typing](#typing)
+- [Roadmap](#roadmap)
 
 ## Run Locally
 
@@ -45,7 +43,7 @@ Install dependencies
 Start the development server
 
 ```bash
-  npm run dev
+  bun run dev
 ```
 
 ## Environment Variables
@@ -79,7 +77,35 @@ To run this project, you will need to add the following environment variables to
 For organization, [Atomic Design](https://atomicdesign.bradfrost.com) principals were followed, specifically around styles and components.
 In all instances, the goal was to constantly look for ways to refactor to make code as simple and reusable as possible.
 
+#### Folder Structure
+``` bash
+src/
+├── assets/
+│   ├── icons/
+│   └── styles/
+│       ├── abstracts/
+│       ├── atoms/
+│       ├── base/
+│       ├── molecules/
+│       ├── organisms/
+│       ├── utils/
+│       └── vendors/
+├── components/
+│   ├── atoms/
+│   ├── molecules/
+│   └── organisms/
+├── context/
+│   ├── columns/
+│   └── repo-data/
+├── hooks/
+├── types/
+└── utils/
+    ├── formatters/
+    └── services/
+```
+
 ### React / Javascript
+- Used `bun create vite` as starter template.
 - React Functional Components with ES6/ES2020 features were used throughout the project.
 - Efforts were made at all stages to reduce unneccesary re-renders and optimize performance.
 - React context was used to manage global state and reduce prop drilling.
@@ -111,11 +137,11 @@ This includes (but not limited to the following):
 - Semantic HTML
 - ARIA Attributes
 - Color Contrast
+- Light / Dark Mode Toggle
 - Focus Management
 - Keyboard Navigation
 - Screen Reader friendly labels and instructions
 - Reduced Motion support
-- Light / Dark Mode Toggle
 - One handed design patterns for mobile
 
 ### Motion
@@ -130,6 +156,7 @@ I also wanted to keep the document as readable as possible so I opted to use the
 
 ## Roadmap
 - [ ]  Optimize avatar images and serve in webp format.
+- [ ]  Reset focus to selected card when panel is closed.
 
 
 
@@ -137,7 +164,7 @@ I also wanted to keep the document as readable as possible so I opted to use the
 - [x]  Clean up and document
 - [x]  Finish types
 - [x]  House cleaning
-- [ ]  Write Read me
+- [x]  Write Read me
 - [ ]  Write Jest Tests
 - [ ]  Eyebrow Corners
 - [ ]  Loading bar / animate loading text

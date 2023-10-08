@@ -8,6 +8,7 @@ import { useRepoDataContext } from '@context/repo-data'
 import SimpleBar from 'simplebar-react'
 
 // Hooks ===============================
+import { useFocusTrap } from '@hooks/useFocusTrap'
 import { useScrollLock } from '@hooks/useScrollLock.js'
 
 // Motion ===============================
@@ -27,6 +28,8 @@ import '@types/typedef'
  * @returns {JSX.Element}
  */
 const CardPanel = ({ selectedId }) => {
+    // Refs -------------------------------
+    const elRef = useFocusTrap()
 
     // Contexts -------------------------------
     const { repos, setSelectedId } = useRepoDataContext()
@@ -34,6 +37,7 @@ const CardPanel = ({ selectedId }) => {
     // States -------------------------------
     const [currentRepo, setCurrentRepo] = useState(null)
 
+    // Effects -------------------------------
     // Get the current repo from context based on selected ID.
     useEffect(() => {
         if (selectedId) {
@@ -102,11 +106,12 @@ const CardPanel = ({ selectedId }) => {
             exit='hide'
             onClick={resetSelectedId}
             onKeyDown={(e) => e.key === 'Escape' && resetSelectedId()}
-        >
+            >
             <motion.article
                 className="card-panel"
                 whileInView='show'
                 onClick={preventClose}
+                ref={elRef}
             >
                 <div className="card-panel__banner">
                     <div className="card-panel__eyebrow">

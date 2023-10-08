@@ -9,7 +9,8 @@ import { useColumnsContext } from '@context/columns'
 import { motion, useInView, useAnimate } from 'framer-motion'
 
 // Utils ===============================
-import { summarize, formatRank } from '@utils/formatters/card-formatter.js'
+import { formatRank } from '@utils/formatters/card-formatter.js'
+import { summarize } from '@utils/formatters/summarize.js'
 
 // Types ===============================
 import '@types/typedef'
@@ -35,7 +36,7 @@ const Card = ({ content, index: sortIndex }) => {
 
     // Formatters -------------------------------
     const ranking = formatRank(cardIndex)
-    const summary = summarize(description)
+    const summary = summarize(description, 80, true)
 
     // Handlers -------------------------------
 

@@ -1,13 +1,3 @@
-
-/**
- * Format description to 80 character summary with ellipsis.
- *
- * @param {string} description
- * @returns {string}
- */
-const summarize = (description) => description.length > 80 ? `${ description.substring(0, 80) }...` : description
-
-
 /**
  * Format card rank with leading zeros.
  *
@@ -25,4 +15,4 @@ const formatRank = (cardIndex) => {
 }
 
 
-export { summarize, formatRank }
+export { formatRank }
