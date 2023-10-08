@@ -95,6 +95,7 @@ const Card = ({ content, index: sortIndex }) => {
                 stiffness: 50
             }}
             inert={locked ? '' : null }
+            role="listitem"
         >
             <div className="card__header">
                 <div className="card__eyebrow">
@@ -109,14 +110,14 @@ const Card = ({ content, index: sortIndex }) => {
                 <div className="card__author">
                     { owner }
                 </div>
-                <div className="card__title">
+                <h3 className="card__title">
                     <button
                         className="card__link"
                         onClick={ handleClick }
                     >
                         { name }
                     </button>
-                </div>
+                </h3>
                 <div className="card__description">{ summary }</div>
             </div>
 

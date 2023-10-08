@@ -181,7 +181,9 @@
 
     &__title {
         --_title-spacing: calc(var(--card-padding-block) * 0.5);
+        font-size: var(--card-font-size-title);
         margin-block-end: var(--_title-spacing);
+        max-inline-size: none;
 
         @container root (min-width: 32rem) {
             &::after {
@@ -199,7 +201,7 @@
     &__link {
         @include btn.button-reset();
         font-family: var(--font-sans);
-        font-size: var(--card-font-size-title);
+        font-size: inherit;
         font-weight: var(--font-weight-7);
         letter-spacing: var(--font-letterspacing-2);
         outline: none;

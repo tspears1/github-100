@@ -46,6 +46,7 @@ const CardGrid = () => {
     return (
         <>
             <div className="card-grid">
+                <h2 className="sr-only">Repositories</h2>
                 <ul className="card-grid__list">
                     <AnimatePresence>
                         { !repos.length && skeletons }

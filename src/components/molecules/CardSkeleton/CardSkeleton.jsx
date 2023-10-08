@@ -52,6 +52,7 @@ const CardSkeleton = ({ index }) => {
                 mass: 0.1,
                 stiffness: 70
             }}
+            role="listitem"
         >
             <div className="card__header">
                 <div className="card__eyebrow">

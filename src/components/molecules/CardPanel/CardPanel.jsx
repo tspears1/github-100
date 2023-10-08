@@ -101,6 +101,7 @@ const CardPanel = ({ selectedId }) => {
             animate='show'
             exit='hide'
             onClick={resetSelectedId}
+            onKeyDown={(e) => e.key === 'Escape' && resetSelectedId()}
         >
             <motion.article
                 className="card-panel"
@@ -188,6 +189,7 @@ const CardPanel = ({ selectedId }) => {
                             className="card-panel__button button button--outline"
                             title="Close Repo Details"
                             onClick={resetSelectedId}
+                            ref={el => el && el.focus()}
                         >
                             <span className="sr-only">Close Repo Details</span>
                             <span className="card-panel__button-icon material-symbols-rounded">close</span>
