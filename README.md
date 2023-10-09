@@ -154,19 +154,3 @@ Framer Motion was used to manage most of the motion on the site. I wanted the mo
 ### Typing
 JSDoc was used for typing with the aim of being as self-documenting as possible and create better IDE intellisense and type checking.
 I also wanted to keep the document as readable as possible so I opted to use the `@typedef` annotation to create custom types that could be reused throughout the document.
-
-## Roadmap
-- [ ]  Optimize avatar images and serve in webp format.
-
-## TODO:
-- [x]  Clean up and document
-- [x]  Finish types
-- [x]  House cleaning
-- [x]  Write Read me
-- [x]  Write Tests
-- [ ]  Eyebrow Corners
-- [x]  Loading bar / animate loading text
-- [x]  Lighthouse / Core Web Vitals Test
-- [x]  Axe Accessibility Test
-- [x]  Add Skip Links
-- [x]  Reset focus to selected card when panel is closed.

@@ -36,7 +36,7 @@
     --card-padding-block: var(--size-3);
     --card-padding-inline: var(--size-3);
     --card-ranking-color: var(--text-2);
-    --card-ranking-opacity: 0.4;
+    --card-ranking-opacity: 0.6;
     --card-scale: 1;
 
     @supports (font-size: 1cqi) {
@@ -47,6 +47,10 @@
         --card-font-size-ranking: 10cqi;
         --card-font-size-title: 7.25cqi;
         --card-icon-size: 6.75cqi;
+    }
+
+    [color-scheme="dark"] & {
+        --card-ranking-opacity: 0.4;
     }
 
     align-content: start;
@@ -66,6 +70,7 @@
     transition:
         box-shadow var(--duration-fast) var(--ease-out-3),
         scale var(--duration-fast) var(--ease-out-3);
+    will-change: box-shadow, scale;
 
     @media (any-hover: hover) {
         &:hover {
@@ -108,6 +113,7 @@
     }
 
     &__eyebrow {
+        --card-eyebrow-padding: 0.75rem;
         align-items: center;
         background: var(--card-background-color);
         border-end-end-radius: 0.5rem;
@@ -119,24 +125,10 @@
         inset: calc(var(--card-padding-block) * 0.75 * -1) auto auto calc(var(--card-padding-inline) * 0.75 * -1);
         letter-spacing: var(--font-letterspacing-4);
         line-height: 0.75;
-        padding-block: 0.75rem;
-        padding-inline: 0.75rem;
+        padding-block: var(--card-eyebrow-padding);
+        padding-inline: var(--card-eyebrow-padding);
         position: absolute;
     }
-
-    // TODO: IF TIME, add eyebrow psuedos
-    // .card__eyebrow::before {
-    //     content: '';
-    //     position: absolute;
-    //     block-size: 2.5em;
-    //     aspect-ratio: 1;
-    //     top: calc(100% + -30px);
-    //     background-color: inherit;
-    //     left: calc(var(--card-padding-block) - 35px);
-    //     background: radial-gradient(circle at bottom right,transparent 11px, var(--card-background-color) 0) bottom right;
-    //     background-size: 50% 50%;
-    //     background-repeat: no-repeat;
-    // }
 
     &__eyebrow-icon {
         &:is(.material-symbols-rounded) {
