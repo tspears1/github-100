@@ -78,8 +78,14 @@
         }
     }
 
-    &:focus-within {
+    &:focus-within:has(:focus-visible) {
         @include card-action-state();
+    }
+
+    @supports not (selector(:has(*))) {
+        &:focus-within {
+            @include card-action-state();
+        }
     }
 
     &__header {
