@@ -30,6 +30,7 @@ const RepoContextProvider = ({ children }) => {
     // State -----------------------------------------------
     const [repos, setRepos] = useState([])
     const [selectedId, setSelectedId] = useState(null)
+    const [selectedCard, setSelectedCard] = useState(null)
 
     // Effects ---------------------------------------------
 
@@ -91,7 +92,9 @@ const RepoContextProvider = ({ children }) => {
             repos,
             setRepos,
             selectedId,
-            setSelectedId
+            setSelectedId,
+            selectedCard,
+            setSelectedCard
         }}>
             {children}
         </RepoContext.Provider>

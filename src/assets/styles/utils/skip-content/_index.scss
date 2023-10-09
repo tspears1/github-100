@@ -1,0 +1,22 @@
+.skip-content {
+    background-color: var(--surface-1);
+    block-size: 1px;
+    border-radius: var(--border-size-1);
+    color: var(--text-1);
+    display: block;
+    inline-size: 1px;
+    inset-block-start: auto;
+    inset-inline-start: -10000px;
+    overflow: hidden;
+    padding: var(--size-3) var(--size-5);
+    position: absolute;
+    z-index: var(--layer-important);
+}
+
+.skip-content:focus {
+    block-size: auto;
+    inline-size: auto;
+    inset-block-start: var(--size-6);
+    inset-inline-start: var(--size-6);
+    overflow: visible;
+}

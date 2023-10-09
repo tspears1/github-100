@@ -45,7 +45,7 @@ const CardGrid = () => {
     // Render -------------------------------
     return (
         <>
-            <div className="card-grid">
+            <main id="main-content" className="card-grid">
                 <h2 className="sr-only">Repositories</h2>
                 <ul className="card-grid__list">
                     <AnimatePresence>
@@ -53,7 +53,7 @@ const CardGrid = () => {
                         { repos.length && cards }
                     </AnimatePresence>
                 </ul>
-            </div>
+            </main>
             <AnimatePresence>
                 { selectedId && <CardPanel selectedId={ selectedId } /> }
             </AnimatePresence>

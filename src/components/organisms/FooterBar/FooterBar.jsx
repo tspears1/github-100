@@ -1,11 +1,17 @@
 // React ===============================
 import { useEffect, useRef } from 'react'
 
+// Components ===============================
+import Loader from '@components/atoms/Loader/Loader'
+
 // Hooks ===============================
 import { useElementSize } from '@hooks/useElementSize.js'
 
 // Context ===============================
 import { useRepoDataContext } from '@context/repo-data'
+
+// Motion ===============================
+import { motion, AnimatePresence } from 'framer-motion'
 
 // Types ===============================
 import '@types/typedef'
@@ -20,12 +26,8 @@ const FooterBar = () => {
     // Contexts -------------------------------
     const data = useRepoDataContext()
 
-    // Variables -------------------------------
-    /** @type {string} */
-    const loadingText = 'L O A D I N G . . .'
-
     // Refs -------------------------------
-    /** @type {HTMLDivElement} */
+    /** @type {React.RefObject<HTMLDivElement>} */
     const footerRef = useRef(null)
 
     // Setup -------------------------------
@@ -45,10 +47,19 @@ const FooterBar = () => {
             <div className="footer-bar__grid">
                 <div className="footer-bar__content">
                     <p className="footer-bar__text">
-                        { !data?.repos?.length
-                            ? loadingText
-                            : `Showing ${data.repos?.length ?? 0} results`
-                        }
+                        <AnimatePresence>
+                            { !data?.repos?.length && <Loader />}
+                            { data?.repos?.length > 0 && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 30 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: 30 }}
+                                    transition={{ duration: 1.5, ease: 'easeOut' }}
+                                >
+                                    {`Showing ${data.repos?.length ?? 0} results`}
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </p>
                 </div>
             </div>

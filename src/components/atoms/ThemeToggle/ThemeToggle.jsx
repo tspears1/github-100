@@ -14,9 +14,9 @@ const ThemeToggle = () => {
     /** @type {string} */
     const storageKey = 'theme-preference'
 
-    // States -------------------------------
+    // Refs -------------------------------
 
-    /** @type {'light' | 'dark'} */
+    /** @type {React.RefObject<'light' | 'dark'>} */
     const theme = useRef('light')
 
     // Handlers -------------------------------

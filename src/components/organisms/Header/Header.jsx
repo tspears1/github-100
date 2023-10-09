@@ -27,7 +27,7 @@ const Header = () => {
     const { selectedId } = useRepoDataContext()
 
     // Refs -------------------------------
-    /** @type {HTMLDivElement} */
+    /** @type {React.RefObject<HTMLDivElement>} */
     const headerRef = useRef(null)
 
     // Setup -------------------------------

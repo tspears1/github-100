@@ -32,7 +32,7 @@ const CardPanel = ({ selectedId }) => {
     const elRef = useFocusTrap()
 
     // Contexts -------------------------------
-    const { repos, setSelectedId } = useRepoDataContext()
+    const { repos, setSelectedId, selectedCard, setSelectedCard } = useRepoDataContext()
 
     // States -------------------------------
     const [currentRepo, setCurrentRepo] = useState(null)
@@ -45,6 +45,13 @@ const CardPanel = ({ selectedId }) => {
             setCurrentRepo(_currentRepo)
             setLocked(true)
         }
+
+        return () => {
+            // Cleanup: Focus the selected card and reset the selected card state.
+            selectedCard.focus()
+            setSelectedCard(null)
+        }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedId])
 
@@ -60,7 +67,10 @@ const CardPanel = ({ selectedId }) => {
      * @returns {void}
      */
     const resetSelectedId = () => {
+        // Reset the selected ID.
         setSelectedId(null)
+
+        // Unlock the body scroll.
         setLocked(false)
     }
 

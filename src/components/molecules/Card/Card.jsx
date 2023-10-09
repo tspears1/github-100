@@ -31,7 +31,7 @@ const Card = ({ content, index: sortIndex }) => {
     const [locked, setLocked] = useState(false)
 
     // Contexts -------------------------------
-    const { selectedId, setSelectedId } = useRepoDataContext()
+    const { selectedId, setSelectedId, setSelectedCard } = useRepoDataContext()
     const { columns } = useColumnsContext()
 
     // Formatters -------------------------------
@@ -41,11 +41,15 @@ const Card = ({ content, index: sortIndex }) => {
     // Handlers -------------------------------
 
     /**
-     * Set the selected ID in context on click.
+     * Set the selected ID and Card Element in context on click.
+     * @param {React.MouseEvent}
      *
      * @returns {void}
      */
-    const handleClick = () => setSelectedId(id)
+    const handleClick = (e) => {
+        setSelectedId(id)
+        setSelectedCard(e.currentTarget)
+    }
 
     // Motion -------------------------------
     const [scope, animate] = useAnimate()

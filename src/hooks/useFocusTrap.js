@@ -5,7 +5,7 @@ const KEYCODE_TAB = 9
 
 /**
  * Default selector used for all focusable elements.
- * @type {array}
+ * @type {string}
  */
 const FOCUSABLE_SELECTOR = [
     'a[href]',

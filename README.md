@@ -10,7 +10,6 @@ Coding Exercise - Using React build a ​single-page web app​ that uses the Gi
 - [Additional Libraries](#additional-libraries)
 - [Process \& Goals](#process--goals)
   - [Structure](#structure)
-    - [Folder Structure](#folder-structure)
   - [React / Javascript](#react--javascript)
   - [Styles](#styles)
   - [UX \& Design](#ux--design)
@@ -60,9 +59,8 @@ To run this project, you will need to add the following environment variables to
 - [Vercel](https://vercel.com/) - Hosting/Deployment
 - [Bun](https://bun.sh/) - Package Manager
 - [Sass/SCSS](https://sass-lang.com/) - Styles
-- [Open-Props](https://open-props.style/) - CSS Custom Properties
 - [Framer Motion](https://www.framer.com/motion/) - Motion
-- [Jest](https://jestjs.io/) - Testing
+- [Vitest](https://vitest.dev/) - Testing
 - [JSDoc](https://jsdoc.app/) - Types
 
 ## Additional Libraries
@@ -70,6 +68,7 @@ To run this project, you will need to add the following environment variables to
 - [Google Fonts](https://fonts.google.com/) - Fonts & Material Symbols
 - [Lazysizes](https://github.com/aFarkas/lazysizes) - Media Lazyloading
 - [Octokit](https://github.com/octokit/octokit.js) - GitHub SDK
+- [Open-Props](https://open-props.style/) - CSS Custom Properties
 - [Simplebar](https://github.com/Grsmto/simplebar) - Custom Scrollbar
 
 ## Process & Goals
@@ -77,7 +76,6 @@ To run this project, you will need to add the following environment variables to
 For organization, [Atomic Design](https://atomicdesign.bradfrost.com) principals were followed, specifically around styles and components.
 In all instances, the goal was to constantly look for ways to refactor to make code as simple and reusable as possible.
 
-#### Folder Structure
 ``` bash
 src/
 ├── assets/
@@ -108,7 +106,7 @@ src/
 - Used `bun create vite` as starter template.
 - React Functional Components with ES6/ES2020 features were used throughout the project.
 - Efforts were made at all stages to reduce unneccesary re-renders and optimize performance.
-- React context was used to manage global state and reduce prop drilling.
+- React Context was used to manage global state and reduce prop drilling.
 - On first load, the app fetches the top 100 repos from the GitHub API (using GitHub's preferred SDK, Octokit) and stores them in context. Then once a card is selected, the commits for that repo are fetched and stored in the same context. This allows for a much faster experience when switching between repos.
 - Once the data for both the repos and commits are fetched, they're filtered, formatted and sorted to ensure that only the most relevant data is stored in context.
 - Local Storage was used to persist the user's theme preference.
@@ -159,16 +157,16 @@ I also wanted to keep the document as readable as possible so I opted to use the
 
 ## Roadmap
 - [ ]  Optimize avatar images and serve in webp format.
-- [ ]  Reset focus to selected card when panel is closed.
 
 ## TODO:
 - [x]  Clean up and document
 - [x]  Finish types
 - [x]  House cleaning
 - [x]  Write Read me
-- [x]  Write Jest Tests
+- [x]  Write Tests
 - [ ]  Eyebrow Corners
-- [ ]  Loading bar / animate loading text
+- [x]  Loading bar / animate loading text
 - [x]  Lighthouse / Core Web Vitals Test
-- [ ]  Axe Accessibility Test
-- [ ]  Add Skip Links
+- [x]  Axe Accessibility Test
+- [x]  Add Skip Links
+- [x]  Reset focus to selected card when panel is closed.
