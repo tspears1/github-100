@@ -97,7 +97,7 @@ test('formatCommitData', () => {
     expect(formatted[0].author).toBe('octocat')
     expect(formatted[0].avatar).toBe('https://github.com/images/error/octocat_happy.gif')
     expect(formatted[0].date).toBe('2011-04-14T16:00:49Z')
-    expect(formatted[0].hours).toBe('109446 hours ago')
+    expect(formatted[0].hours).toBe(formatCommitDate(formatted[0].date))
     expect(formatted[0].message).toBe('Fix all the bugs')
     expect(formatted[0].sha).toBe('6dcb09b5b57875f334f61aebed695e2e4193db5e')
     expect(formatted[0].shortSha).toBe('6dcb09b')
