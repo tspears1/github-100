@@ -6,7 +6,7 @@ import { useRepoDataContext } from '@context/repo-data'
 import { useColumnsContext } from '@context/columns'
 
 // Motion ===============================
-import { motion, useInView, useAnimate } from 'framer-motion'
+import { motion, useInView, useAnimate, useReducedMotion } from 'framer-motion'
 
 // Utils ===============================
 import { formatRank } from '@utils/formatters/card-formatter.js'
@@ -29,6 +29,9 @@ const Card = ({ content, index: sortIndex }) => {
 
     // States -------------------------------
     const [locked, setLocked] = useState(false)
+
+    // Check reduced motion settings.
+    const shouldReduceMotion = useReducedMotion()
 
     // Contexts -------------------------------
     const { selectedId, setSelectedId, setSelectedCard } = useRepoDataContext()
@@ -77,7 +80,7 @@ const Card = ({ content, index: sortIndex }) => {
             scale: 1
         },
         hide: {
-            opacity: 0,
+            opacity: shouldReduceMotion ? 1 : 0,
             y: 100,
             scale: 0.8
         }
@@ -93,7 +96,7 @@ const Card = ({ content, index: sortIndex }) => {
             whileInView='show'
             exit='hide'
             transition={{
-                delay: sortIndex % columns * 0.1,
+                delay: shouldReduceMotion ? 0 : sortIndex % columns * 0.1,
                 bounce: 0.85,
                 type: 'spring',
                 mass: 0.1,
