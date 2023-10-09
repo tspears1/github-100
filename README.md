@@ -56,15 +56,15 @@ To run this project, you will need to add the following environment variables to
 - [React 18](https://react.dev/) - Javascript Framework
 - [Node 18](https://nodejs.org/) - Runtime Environment
 - [Vite 4](https://vitejs.dev/) - Build Tools
-- [Vercel](https://vercel.com/) - Hosting/Deployment
+- [Vercel](https://vercel.com/) - Hosting / Deployment
 - [Bun](https://bun.sh/) - Package Manager
 - [Sass/SCSS](https://sass-lang.com/) - Styles
-- [Framer Motion](https://www.framer.com/motion/) - Motion
 - [Vitest](https://vitest.dev/) - Testing
 - [JSDoc](https://jsdoc.app/) - Types
 
 ## Additional Libraries
 
+- [Framer Motion](https://www.framer.com/motion/) - Motion
 - [Google Fonts](https://fonts.google.com/) - Fonts & Material Symbols
 - [Lazysizes](https://github.com/aFarkas/lazysizes) - Media Lazyloading
 - [Octokit](https://github.com/octokit/octokit.js) - GitHub SDK
@@ -122,7 +122,7 @@ The goal with styling was to leverage Modern CSS whenever possible rather than l
 - Traditional breakpoints were replaced with **Container Queries** to allow every element to be fully responsive no matter what container it was in.
 - **Custom Properies** were leaned on heavily to allow for a super flexible theming experience.
 - **CSS Layers** was used for better cascade management.
-- **"S.O.B." (State of Being) Pseudo Class Functions** like `:where()`, `:is()`, and `:not()` also allowed more flexible control over the cascade.
+- **"S.O.B." (State of Being) Pseudo Class Functions** like `:where()`, `:is()`, `:has()` and `:not()` also allowed more flexible control over the cascade.
 
 ### UX & Design
 The goal was to create a simple, clean and delightful experience that would allow the user to focus on the content and easy to use on any sized viewport.
