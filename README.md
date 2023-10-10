@@ -110,7 +110,7 @@ src/
 - On first load, the app fetches the top 100 repos from the GitHub API (using GitHub's preferred SDK, Octokit) and stores them in context. Then once a card is selected, the commits for that repo are fetched and stored in the same context. This allows for a much faster experience when switching between repos.
 - Once the data for both the repos and commits are fetched, they're filtered, formatted and sorted to ensure that only the most relevant data is stored in context.
 - Local Storage was used to persist the user's theme preference.
-- Context was also used to manage the number of columns that would fit at a given viewport. This was purely used for Card staggered animations with Framer Motion and could be removed in the future.
+- Context was also used to manage the number of columns that would fit at a given viewport. This is used for the Card staggered animations with Framer Motion.
 
 ### Styles
 The goal with styling was to leverage Modern CSS whenever possible rather than leaning on Javascript for theming and DOM level manipulation. This was done to ensure that the site was as performant as possible. The only exception to this was the use of Framer Motion for animations.
@@ -141,16 +141,16 @@ This includes (but not limited to the following):
 - Skip Links
 - Screen Reader friendly labels and instructions
 - Reduced Motion support
-- One handed design patterns for mobile
+- One-handed design patterns for mobile
 
 ### Motion
-Framer Motion was used to manage most of the motion on the site. I wanted the movement to be informative and provide visual feedback to the user. I also wanted it to create a delightful experience that would make the site feel more alive and fluid.
+**Framer Motion** was used to manage most of the motion on the site. I wanted the movement to be informative and provide visual feedback to the user. I also wanted it to create a delightful experience that would make the site feel more alive and fluid.
 
 ### Testing
-- Unit tests were written using Vitest specifically to test all formatters and services.
-- Axe was used to run an accessibility audit on the site to ensure that it was as accessible as possible.
-- Lighthouse was used to run a performance audit on the site to ensure that it was as performant as possible and met the Core Web Vitals standards.
+- Unit tests were written using **Vitest** specifically to test all formatters and services.
+- **Axe** was used to run an accessibility audit on the site to ensure that it was as accessible as possible.
+- **Lighthouse** was used to run a performance audit on the site to ensure that it was as performant as possible and met the **Core Web Vitals** standards.
 
 ### Typing
-JSDoc was used for typing with the aim of being as self-documenting as possible and create better IDE intellisense and type checking.
+**JSDoc** was used for typing with the aim of being as self-documenting as possible and create better IDE intellisense and type checking.
 I also wanted to keep the document as readable as possible so I opted to use the `@typedef` annotation to create custom types that could be reused throughout the document.

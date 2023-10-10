@@ -46,7 +46,7 @@ const FooterBar = () => {
         <div className='footer-bar' ref={footerRef}>
             <div className="footer-bar__grid">
                 <div className="footer-bar__content">
-                    <p className="footer-bar__text">
+                    <div className="footer-bar__text">
                         <AnimatePresence>
                             { !data?.repos?.length && <Loader />}
                             { data?.repos?.length > 0 && (
@@ -60,7 +60,7 @@ const FooterBar = () => {
                                 </motion.div>
                             )}
                         </AnimatePresence>
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>

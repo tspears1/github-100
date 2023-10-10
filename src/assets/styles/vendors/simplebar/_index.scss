@@ -22,8 +22,12 @@
         display: block;
     }
 
-    .simplebar-scrollbar.simplebar-visible:before {
-        background: var(--brand);
-        opacity: 1;
+    .simplebar-scrollbar.simplebar-visible {
+        will-change: transform;
+
+        &::before {
+            background: var(--brand);
+            opacity: 1;
+        }
     }
 }
