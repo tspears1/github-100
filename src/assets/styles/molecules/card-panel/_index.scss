@@ -159,6 +159,8 @@
         gap: var(--size-fluid-1);
         grid-template-columns: auto max-content;
         justify-content: space-between;
+        position: relative;
+        z-index: var(--layer-5);
     }
 
     &__ranking {

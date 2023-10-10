@@ -2,7 +2,7 @@
 import { useColumnsContext } from '@context/columns'
 
 // Motion ===============================
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 // Types ===============================
 import '@types/typedef'
@@ -21,6 +21,15 @@ const CardSkeleton = ({ index }) => {
     const { columns } = useColumnsContext()
 
     // Motion -------------------------------
+    // Check reduced motion settings.
+    const shouldReduceMotion = useReducedMotion()
+
+    /** @type {number} */
+    const exitY = shouldReduceMotion ? 0 : 20
+
+    /** @type {number} */
+    const exitScale = shouldReduceMotion ? 1 : 0.8
+
     const motionVariants = {
         initial: {
             opacity: 0,
@@ -30,8 +39,8 @@ const CardSkeleton = ({ index }) => {
         },
         exit: {
             opacity: 0,
-            y: 20,
-            scale: 0.8,
+            y: exitY,
+            scale: exitScale,
         }
     }
 

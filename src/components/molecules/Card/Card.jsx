@@ -30,9 +30,6 @@ const Card = ({ content, index: sortIndex }) => {
     // States -------------------------------
     const [locked, setLocked] = useState(false)
 
-    // Check reduced motion settings.
-    const shouldReduceMotion = useReducedMotion()
-
     // Contexts -------------------------------
     const { selectedId, setSelectedId, setSelectedCard } = useRepoDataContext()
     const { columns } = useColumnsContext()
@@ -58,12 +55,18 @@ const Card = ({ content, index: sortIndex }) => {
     const [scope, animate] = useAnimate()
     const isInView = useInView(scope)
 
+    // Check reduced motion settings.
+    const shouldReduceMotion = useReducedMotion()
+
+    /** @type {number} */
+    const lockedScale = shouldReduceMotion ? 1 : 0.9
+
     useEffect(() => {
         if (!isInView) return
 
         if (selectedId) {
             setLocked(true)
-            animate(scope.current, { opacity: 0.2, y: 0, scale: 0.9 }, {duration: 0.5, ease: 'anticipate' })
+            animate(scope.current, { opacity: 0.2, y: 0, scale: lockedScale }, {duration: 0.5, ease: 'anticipate' })
         } else {
             animate(scope.current, { opacity: 1, y: 0, scale: 1 }, {duration: 0.5, ease: 'anticipate' })
             setLocked(false)
@@ -71,6 +74,18 @@ const Card = ({ content, index: sortIndex }) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedId])
+
+    /** @type {number} */
+    const hideOpacity = shouldReduceMotion ? 1 : 0
+
+    /** @type {number} */
+    const hideScale = shouldReduceMotion ? 1 : 0.8
+
+    /** @type {number} */
+    const hideY = shouldReduceMotion ? 0 : 100
+
+    /** @type {number} */
+    const transitionDelay = shouldReduceMotion ? 0 : sortIndex % columns * 0.1
 
     /** @type {AnimationProps.variants} */
     const motionVariants = {
@@ -80,9 +95,9 @@ const Card = ({ content, index: sortIndex }) => {
             scale: 1
         },
         hide: {
-            opacity: shouldReduceMotion ? 1 : 0,
-            y: 100,
-            scale: 0.8
+            opacity: hideOpacity,
+            y: hideY,
+            scale: hideScale,
         }
     }
 
@@ -96,7 +111,7 @@ const Card = ({ content, index: sortIndex }) => {
             whileInView='show'
             exit='hide'
             transition={{
-                delay: shouldReduceMotion ? 0 : sortIndex % columns * 0.1,
+                delay: transitionDelay,
                 bounce: 0.85,
                 type: 'spring',
                 mass: 0.1,

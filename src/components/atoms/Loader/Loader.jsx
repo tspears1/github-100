@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 /**
  * @component Loader
@@ -11,6 +11,15 @@ const Loader = () => {
     /** @type {string} */
     const loadingText = 'LOADING'
 
+    // Motion -------------------------------
+    const shouldReduceMotion = useReducedMotion()
+
+    /** @type {number} */
+    const baseY = shouldReduceMotion ? 0 : -10
+
+    /** @type {number[]} */
+    const animateY = shouldReduceMotion ? [0, 0, 0] : [0, -10, 0]
+
     // Render -------------------------------
     return (
         <div className="loader">
@@ -20,15 +29,15 @@ const Loader = () => {
                     className="loader__letter"
                     initial={{
                         opacity: 0,
-                        y: -10
+                        y: baseY,
                     }}
                     animate={{
                         opacity: [0, 1, 0],
-                        y: [0, -10, 0]
+                        y: animateY,
                     }}
                     exit={{
                         opacity: 0,
-                        y: -10,
+                        y: baseY,
                         transition: {
                             duration: 2.5
                         }

@@ -12,7 +12,7 @@ import { useFocusTrap } from '@hooks/useFocusTrap'
 import { useScrollLock } from '@hooks/useScrollLock.js'
 
 // Motion ===============================
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 // Utils ===============================
 import { formatRank } from '@utils/formatters/card-formatter.js'
@@ -86,6 +86,12 @@ const CardPanel = ({ selectedId }) => {
     const ranking = formatRank(index)
 
     // Motion -------------------------------
+    // Check reduced motion settings.
+    const shouldReduceMotion = useReducedMotion()
+
+    /** @type {number} */
+    const hideScale = shouldReduceMotion ? 1 : 0.8
+
     /** @type {AnimationProps.variants} */
     const motionVariants = {
         show: {
@@ -98,7 +104,7 @@ const CardPanel = ({ selectedId }) => {
         },
         hide: {
             opacity: 0,
-            scale: 0.8,
+            scale: hideScale,
             transition: {
                 duration: 0.5,
                 ease: 'anticipate',
@@ -194,14 +200,14 @@ const CardPanel = ({ selectedId }) => {
                         { ranking }
                     </div>
                     <div className="card-panel__actions">
-                        <a href={url} target='_blank' className="card-panel__link button">
+                        <a href={url} target='_blank' className="card-panel__link button has--tooltip">
                             <span className="sr-only">View Repo</span>
                             <span className="card-panel__button-icon material-symbols-rounded">open_in_new</span>
                             <tool-tip tip-position="block-start">View Repo</tool-tip>
                         </a>
 
                         <button
-                            className="card-panel__button button button--outline"
+                            className="card-panel__button button button--outline has--tooltip"
                             title="Close Repo Details"
                             onClick={resetSelectedId}
                             ref={el => el && el.focus()}
