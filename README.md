@@ -51,6 +51,8 @@ To run this project, you will need to add the following environment variables to
 
 `VITE_GITHUB_PERSONAL_ACCESS_TOKEN`
 
+(Last updated 04.17.2024)
+
 ## Tech Stack
 
 - [React 18](https://react.dev/) - Javascript Framework
